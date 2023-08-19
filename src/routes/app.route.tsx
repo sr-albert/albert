@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { App } from "@/app";
-import { Contact, Home, Project } from "@/pages";
+import { Contact, Home, Project, actionContactSubmit } from "@/pages";
 
 const appRoute = createBrowserRouter([
   {
@@ -15,6 +15,7 @@ const appRoute = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+        action: actionContactSubmit,
       },
       {
         path: "/project",
