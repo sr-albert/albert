@@ -6,7 +6,7 @@ const appRoute = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <div>404</div>,
+    errorElement: <div>Something went wrong !</div>,
     children: [
       {
         index: true,

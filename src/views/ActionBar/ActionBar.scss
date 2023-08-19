@@ -1,0 +1,32 @@
+// Float #action-bar to the right center of the screen
+#action-bar {
+  position: fixed;
+  top: 50%;
+  right: 1%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+.action-bar-item {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin: 5px;
+  min-height: 40px;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+}
