@@ -9,13 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+  },
+  "devDependencies": {
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "preact": "^10.16.0",
     "react-router-dom": "^6.15.0",
-    "sort-by": "^1.2.0"
-  },
-  "devDependencies": {
+    "sort-by": "^1.2.0",
     "@preact/preset-vite": "^2.5.0",
     "react-feather": "^2.0.10",
     "sass": "^1.66.1",
