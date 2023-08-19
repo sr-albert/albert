@@ -25,4 +25,12 @@
 │   ├── /utils
 │   ├── /hooks
 │   ├── app.tsx # App entry point
+
 ```
+
+# Naming Convention
+
+## Components, Pages, and Views
+
+Using PascalCase for components and their filenames.
+e.g., `ActionBarItem.tsx`, `ActionContainer.tsx`
