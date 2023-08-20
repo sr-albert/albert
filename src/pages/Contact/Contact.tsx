@@ -1,31 +1,11 @@
+import { Form, redirect } from "react-router-dom";
 import "./Contact.scss";
-import { Form, useSubmit } from "react-router-dom";
 
-interface ContactProps {
-  fullName: string;
-  email: string;
-  message: string;
-  reason: string;
+export async function action() {
+  return redirect(`/contact`);
 }
 
-export function action({ request }: any) {
-  const formData = request.formData();
-
-  console.log(formData.get("fullName"));
-  console.log(formData.get("email"));
-  console.log(formData.get("message"));
-  console.log(formData.get("reason"));
-
-  return { formData };
-}
-
-export default function Contact(data?: ContactProps) {
-  const submit = useSubmit();
-
-  const onFieldChange = (event: any) => {
-    submit(event.target.form);
-  };
-
+export default function Contact() {
   return (
     <div id="contact-container">
       <Form method="post" aria-label="Contact me" action="/contact">
@@ -45,7 +25,6 @@ export default function Contact(data?: ContactProps) {
           type="text"
           aria-label="Email"
           placeholder="Your email ...."
-          onChange={onFieldChange}
         />
 
         <select
