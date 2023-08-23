@@ -1,4 +1,4 @@
-import Home from "./Home";
+import Home from "./Home/Home";
 import Contact, { actionSubmit } from "./Contact";
 import Project from "./Project";
 

@@ -1,11 +1,11 @@
 import {
+  Smile as DefaultIcon,
   GitHub,
   Home as HomeIcon,
   Linkedin,
   MessageSquare,
-  Smile as DefaultIcon,
 } from "react-feather";
-import { NavLink, useMatch, useSearchParams } from "react-router-dom";
+import { NavLink, useMatch } from "react-router-dom";
 import "./ActionBar.scss";
 
 interface ItemProps {

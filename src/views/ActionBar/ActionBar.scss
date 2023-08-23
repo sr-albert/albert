@@ -21,9 +21,11 @@
   transition: all 0.2s ease-in-out;
   margin: 5px;
   min-height: 40px;
+  color: black;
 
   &:hover {
     transform: scale(1.05);
+    color: rgb(163, 149, 24);
   }
   &:active {
     transform: scale(0.95);
@@ -32,8 +34,8 @@
 
 #action-bar .active {
   shape-outside: margin-box;
-  background-color: red;
-  color: yellow;
+  background-color: black;
+  color: white;
 }
 
 #action-bar .pending {
