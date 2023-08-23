@@ -22,6 +22,7 @@ export default function Contact() {
           data-testid="input-full-name"
           name="fullName"
           type="text"
+          placeholder="..."
           aria-label="Full Name"
         />
 
@@ -31,8 +32,8 @@ export default function Contact() {
           data-testid="input-email"
           name="email"
           type="text"
+          placeholder="..."
           aria-label="Email"
-          placeholder="Your email ...."
         />
 
         <label htmlFor="select-reason">Reason</label>
@@ -41,6 +42,7 @@ export default function Contact() {
           aria-disabled={true}
           defaultValue="OTHER"
           name="reason"
+          placeholder="..."
         >
           <option value="HIRING-ME">Hiring me</option>
           <option value="OTHER">Other</option>
@@ -52,6 +54,7 @@ export default function Contact() {
           aria-label="Message"
           label="Message"
           name="message"
+          placeholder="..."
         />
 
         <button id="btn-submit" type="submit">
