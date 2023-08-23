@@ -1,23 +1,31 @@
 import { Form, redirect } from "react-router-dom";
 import "./Contact.scss";
 
-export async function action() {
-  return redirect(`/contact`);
+export async function action({ request }: any) {
+  const formData = await request.formData();
+  const objData = Object.fromEntries(formData);
+  // Parse the object into a query string and redirect and ignore the empty values
+  const queryString = new URLSearchParams(objData).toString();
+
+  return redirect(`/contact?${queryString}`);
 }
 
 export default function Contact() {
   return (
     <div id="contact-container">
       <Form method="post" aria-label="Contact me" action="/contact">
+        <h1>Contact me</h1>
+
+        <label htmlFor="input-full-name">Full Name</label>
         <input
           id="input-full-name"
           data-testid="input-full-name"
           name="fullName"
           type="text"
           aria-label="Full Name"
-          placeholder="Your name ...."
         />
 
+        <label htmlFor="input-email">Email</label>
         <input
           id="input-email"
           data-testid="input-email"
@@ -27,6 +35,7 @@ export default function Contact() {
           placeholder="Your email ...."
         />
 
+        <label htmlFor="select-reason">Reason</label>
         <select
           id="select-reason"
           aria-disabled={true}
@@ -37,7 +46,13 @@ export default function Contact() {
           <option value="OTHER">Other</option>
         </select>
 
-        <textarea aria-label="Message" label="Message" name="message" />
+        <label htmlFor="message">Message</label>
+        <textarea
+          id="message"
+          aria-label="Message"
+          label="Message"
+          name="message"
+        />
 
         <button id="btn-submit" type="submit">
           Submit

@@ -1,9 +1,8 @@
-// Float #action-bar to the right center of the screen
 #action-bar {
   position: fixed;
   top: 50%;
-  right: 1%;
   transform: translateY(-50%);
+  right: 5%;
   z-index: 100;
 }
 
@@ -29,4 +28,18 @@
   &:active {
     transform: scale(0.95);
   }
+}
+
+#action-bar .active {
+  shape-outside: margin-box;
+  background-color: red;
+  color: yellow;
+}
+
+#action-bar .pending {
+  background-color: black;
+}
+
+#action-bar .highlight {
+  // Todo: do something fancy here
 }

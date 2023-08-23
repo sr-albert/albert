@@ -1,8 +1,18 @@
 #contact-container {
+  // hidden scrollbar
+  overflow: auto;
   width: 360px;
 
   form {
-    justify-content: center;
-    align-items: center;
+    text-align: left;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    margin: 0px 0px 1.5rem 0px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
   }
 }
