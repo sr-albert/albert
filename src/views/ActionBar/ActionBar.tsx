@@ -90,6 +90,7 @@ function Item({ id, name, href, description, isSocial }: ItemProps) {
       target={isSocial ? "_blank" : "_self"}
       name={name}
       className={returnClassName}
+      draggable={false}
     >
       {renderIcon()}
     </NavLink>
