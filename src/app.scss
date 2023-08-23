@@ -1,8 +1,10 @@
 @import "styles/variables.scss";
+@import "styles/fonts.scss";
 
 #app {
   max-width: 1280px;
   margin: 0 auto;
+  font-family: monospace, Arial, Helvetica, sans-serif;
 }
 
 form {

@@ -1,6 +1,6 @@
-import { createBrowserRouter, useRouteError } from "react-router-dom";
 import { App } from "@/app";
 import { Contact, Home, Project, actionContactSubmit } from "@/pages";
+import { createBrowserRouter } from "react-router-dom";
 
 const appRoute = createBrowserRouter([
   {

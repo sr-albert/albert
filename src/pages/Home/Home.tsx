@@ -1,9 +1,11 @@
+import "./Home.scss";
+
 export default function Home() {
   return (
     <div id="home">
-      <p>Hi there,</p>
-      <h2>I am Albert,</h2>
-      <h2>a software Engineer</h2>
+      <span>Hi there,</span>
+      <h1>I am Albert,</h1>
+      <h1>a software Engineer</h1>
     </div>
   );
 }
