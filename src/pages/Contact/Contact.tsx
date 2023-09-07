@@ -10,8 +10,6 @@ export async function action({ request }: any) {
 }
 
 export default function Contact() {
-  const [isLoading, setLoading] = useState(false);
-
   return (
     <div id="contact-container">
       <Form
@@ -69,7 +67,4 @@ export default function Contact() {
       </Form>
     </div>
   );
-}
-function useState(arg0: boolean): [any, any] {
-  throw new Error("Function not implemented.");
 }
