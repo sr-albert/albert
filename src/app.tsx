@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import "./app.scss";
 import { ActionBar } from "./views";
+import "./app.scss";
 
 export function App() {
   return (

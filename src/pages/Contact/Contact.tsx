@@ -4,16 +4,22 @@ import "./Contact.scss";
 export async function action({ request }: any) {
   const formData = await request.formData();
   const objData = Object.fromEntries(formData);
-  // Parse the object into a query string and redirect and ignore the empty values
   const queryString = new URLSearchParams(objData).toString();
 
   return redirect(`/contact?${queryString}`);
 }
 
 export default function Contact() {
+  const [isLoading, setLoading] = useState(false);
+
   return (
     <div id="contact-container">
-      <Form method="post" aria-label="Contact me" action="/contact">
+      <Form
+        key="contact-form"
+        method="post"
+        aria-label="Contact me"
+        action="/contact"
+      >
         <h1>Contact me</h1>
 
         <label htmlFor="input-full-name">Full Name</label>
@@ -63,4 +69,7 @@ export default function Contact() {
       </Form>
     </div>
   );
+}
+function useState(arg0: boolean): [any, any] {
+  throw new Error("Function not implemented.");
 }
