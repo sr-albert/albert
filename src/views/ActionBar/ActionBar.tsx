@@ -1,11 +1,11 @@
 import {
+  Smile as DefaultIcon,
   GitHub,
   Home as HomeIcon,
   Linkedin,
   MessageSquare,
-  Smile as DefaultIcon,
 } from "react-feather";
-import { NavLink } from "react-router-dom";
+import { NavLink, useMatch } from "react-router-dom";
 import "./ActionBar.scss";
 
 interface ItemProps {
@@ -47,6 +47,8 @@ const mockActionBar: ItemProps[] = [
 ];
 
 function Item({ id, name, href, description, isSocial }: ItemProps) {
+  const contactPathMatched = useMatch("/contact");
+  const isHighlight = contactPathMatched && isSocial;
   const renderIcon = () => {
     switch (id) {
       case "home":
@@ -62,6 +64,24 @@ function Item({ id, name, href, description, isSocial }: ItemProps) {
     }
   };
 
+  const returnClassName = ({
+    isActive,
+    isPending,
+  }: {
+    isActive?: boolean;
+    isPending?: boolean;
+  }) => {
+    let className = "action-bar-item";
+
+    if (isHighlight) className += " highlight";
+
+    if (isSocial) className += " social";
+
+    className += isPending ? " pending" : isActive ? " active" : "";
+
+    return className;
+  };
+
   return (
     <NavLink
       id={`action-item-${id}`}
@@ -69,7 +89,8 @@ function Item({ id, name, href, description, isSocial }: ItemProps) {
       to={href}
       target={isSocial ? "_blank" : "_self"}
       name={name}
-      className="action-bar-item"
+      className={returnClassName}
+      draggable={false}
     >
       {renderIcon()}
     </NavLink>
@@ -93,5 +114,9 @@ export default function ActionBar() {
       }
     );
 
-  return <div id="action-bar"> {renderItems()} </div>;
+  return (
+    <div id="action-bar" className="horizontal">
+      {renderItems()}
+    </div>
+  );
 }
