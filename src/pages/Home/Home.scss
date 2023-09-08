@@ -1,9 +1,11 @@
 #home {
-  h1 {
-    line-height: 1.5rem;
-  }
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
 
-  @media (max-width: 600px) {
-    // padding: 10px;
-  }
+#home-intro {
+  width: 80%;
+  margin: auto;
 }
