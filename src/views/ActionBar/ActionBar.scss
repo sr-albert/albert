@@ -1,0 +1,61 @@
+// import all variables from '@styles/variables.scss';
+@import "../../styles/variables.scss";
+
+#action-bar {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5%;
+  z-index: 100;
+
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    top: 95%;
+    right: 0%;
+    height: fit-content;
+  }
+}
+
+.action-bar-item {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+  background-color: $light-color;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin: 5px;
+  min-height: 40px;
+  color: $dark-color;
+  border: 1px solid transparent;
+
+  &:hover {
+    transform: scale(1.05);
+    color: $main-color;
+  }
+}
+
+#action-bar .active {
+  shape-outside: margin-box;
+  background-color: black;
+  color: white;
+}
+
+#action-bar .pending {
+  background-color: black;
+}
+
+#action-bar .highlight {
+  // Todo: do something fancy here
+  border: 1px solid $main-color;
+  transition: all 0.2s ease-in-out;
+}
