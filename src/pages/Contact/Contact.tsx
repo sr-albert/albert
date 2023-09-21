@@ -10,7 +10,7 @@ export async function action({ request }: any) {
 }
 
 export default function Contact() {
-  const [isLoading, setLoading] = useState(false);
+  const onSubmit = () => {};
 
   return (
     <div id="contact-container">
@@ -19,6 +19,7 @@ export default function Contact() {
         method="post"
         aria-label="Contact me"
         action="/contact"
+        onSubmit={onSubmit}
       >
         <h1>Contact me</h1>
 
@@ -69,7 +70,4 @@ export default function Contact() {
       </Form>
     </div>
   );
-}
-function useState(arg0: boolean): [any, any] {
-  throw new Error("Function not implemented.");
 }
