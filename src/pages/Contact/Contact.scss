@@ -1,7 +1,5 @@
 #contact-container {
   overflow: auto;
-  width: 100vw;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,7 +24,6 @@
     top: 10%;
 
     form {
-      width: 80%;
       padding-bottom: 200px;
     }
   }

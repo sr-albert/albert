@@ -10,6 +10,8 @@ export async function action({ request }: any) {
 }
 
 export default function Contact() {
+  const onSubmit = () => {};
+
   return (
     <div id="contact-container">
       <Form
@@ -17,6 +19,7 @@ export default function Contact() {
         method="post"
         aria-label="Contact me"
         action="/contact"
+        onSubmit={onSubmit}
       >
         <h1>Contact me</h1>
 
