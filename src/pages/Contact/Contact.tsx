@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Form, redirect } from "react-router-dom";
 import "./Contact.scss";
 
@@ -59,7 +61,6 @@ export default function Contact() {
         <textarea
           id="message"
           aria-label="Message"
-          label="Message"
           name="message"
           placeholder="..."
         />
