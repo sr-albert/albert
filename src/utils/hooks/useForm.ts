@@ -1,9 +1,9 @@
-import { useState } from "preact/hooks";
-
-const useForm = (initialValues: any) => {
+import { IContactInitialValues } from "@/types/contact";
+import { useState } from "react";
+const useForm = (initialValues: IContactInitialValues) => {
   const [values, setValues] = useState(initialValues);
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
       ...values,
       [event.target.name]: event.target.value,

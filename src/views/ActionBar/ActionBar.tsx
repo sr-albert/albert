@@ -46,7 +46,7 @@ const mockActionBar: ItemProps[] = [
   },
 ];
 
-function Item({ id, name, href, description, isSocial }: ItemProps) {
+function Item({ id, href, description, isSocial }: ItemProps) {
   const contactPathMatched = useMatch("/contact");
   const isHighlight = contactPathMatched && isSocial;
   const renderIcon = () => {
@@ -84,11 +84,11 @@ function Item({ id, name, href, description, isSocial }: ItemProps) {
 
   return (
     <NavLink
+      // name={name}
       id={`action-item-${id}`}
       aria-label={description}
       to={href}
       target={isSocial ? "_blank" : "_self"}
-      name={name}
       className={returnClassName}
       draggable={false}
     >
