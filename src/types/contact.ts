@@ -9,4 +9,5 @@ export interface IContactInitialValues {
   name: string;
   email: string;
   message: string;
+  reason: string;
 }

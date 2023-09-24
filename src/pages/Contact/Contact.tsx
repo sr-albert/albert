@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Form, redirect } from "react-router-dom";
 import "./Contact.scss";
+import useForm from "@/utils/hooks/useForm";
 
 export async function action({ request }: any) {
   const formData = await request.formData();
@@ -12,7 +13,17 @@ export async function action({ request }: any) {
 }
 
 export default function Contact() {
-  const onSubmit = () => {};
+  const { values, handleChange, isVaild } = useForm({
+    name: "",
+    email: "",
+    message: "",
+    reason: "OTHER",
+  });
+
+  const onSubmit = (event: any) => {
+    event.preventDefault();
+    console.log(values);
+  };
 
   return (
     <div id="contact-container">
@@ -29,10 +40,11 @@ export default function Contact() {
         <input
           id="input-full-name"
           data-testid="input-full-name"
-          name="fullName"
+          name="name"
           type="text"
           placeholder="..."
           aria-label="Full Name"
+          onChange={handleChange}
         />
 
         <label htmlFor="input-email">Email</label>
@@ -43,6 +55,7 @@ export default function Contact() {
           type="text"
           placeholder="..."
           aria-label="Email"
+          onChange={handleChange}
         />
 
         <label htmlFor="select-reason">Reason</label>
@@ -52,6 +65,7 @@ export default function Contact() {
           defaultValue="OTHER"
           name="reason"
           placeholder="..."
+          onChange={handleChange}
         >
           <option value="HIRING-ME">Hiring me</option>
           <option value="OTHER">Other</option>
@@ -63,9 +77,10 @@ export default function Contact() {
           aria-label="Message"
           name="message"
           placeholder="..."
+          onChange={handleChange}
         />
 
-        <button id="btn-submit" type="submit">
+        <button id="btn-submit" type="submit" disabled={!isVaild}>
           Submit
         </button>
       </Form>
