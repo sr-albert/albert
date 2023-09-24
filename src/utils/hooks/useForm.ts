@@ -1,40 +1,56 @@
-import { IContactInitialValues } from "@/types/contact";
-import { useState } from "react";
+import { IContactErrors, IContactInitialValues } from "@/types/contact";
+import { FormEvent, useState } from "react";
 
-const useForm = (initialValues: IContactInitialValues) => {
-  const [isVaild, setValid] = useState(false);
+interface UseFormOptions {
+  initialValues: IContactInitialValues;
+  onSubmit: (values: IContactInitialValues) => void;
+  validate: (values: IContactInitialValues) => IContactErrors;
+}
+
+const useForm = ({ initialValues, validate, onSubmit }: UseFormOptions) => {
+  const [isVaild] = useState(false);
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({
     name: "",
     email: "",
     message: "",
   });
+  const [state] = useState("initial");
 
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => {
-    const name = event.target.name;
-    const value = event.target.value;
-
-    if (!value) {
-      setErrors({ ...errors, [name]: "Error" });
-    } else {
-      setErrors({ ...errors, [name]: "" });
-    }
-
-    setValid(Object.values(errors).every((x) => x === ""));
+    const { name, value } = event.target;
 
     setValues({
       ...values,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
 
-    // TODO: add param to path to make it dynamic (e.g. /contact?reason=general)
+    if (validate) {
+      const newErrors = validate({ ...values, [name]: value });
+      setErrors({ ...errors, ...newErrors });
+    }
   };
 
-  return { values, isVaild, errors, handleChange };
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (validate) {
+      const validationErrors = validate(values);
+
+      if (Object.keys(validationErrors).length > 0) {
+        setErrors({ ...errors, ...validationErrors });
+        return;
+      }
+    }
+
+    onSubmit(values);
+  };
+
+  return { values, isVaild, errors, state, handleChange, handleSubmit };
 };
 
 export default useForm;
