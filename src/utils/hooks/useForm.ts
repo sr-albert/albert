@@ -1,21 +1,26 @@
-import { IContactErrors, IContactInitialValues } from "@/types/contact";
+import {
+  IContactErrors,
+  IContactFormValue,
+  IContactInitialValues,
+} from "@/types/contact";
 import { FormEvent, useState } from "react";
 
 interface UseFormOptions {
-  initialValues: IContactInitialValues;
+  initialValues: IContactFormValue;
   onSubmit: (values: IContactInitialValues) => void;
   validate: (values: IContactInitialValues) => IContactErrors;
 }
 
 const useForm = ({ initialValues, validate, onSubmit }: UseFormOptions) => {
   const [isVaild] = useState(false);
-  const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [state] = useState("initial");
+  const [values, setValues] = useState(
+    initialValues || {
+      name: { value: "", error: "" },
+      email: { value: "", error: "" },
+      message: { value: "", error: "" },
+    }
+  );
+  const [state, setFormState] = useState("initial");
 
   const handleChange = (
     event: React.ChangeEvent<
@@ -26,13 +31,16 @@ const useForm = ({ initialValues, validate, onSubmit }: UseFormOptions) => {
 
     setValues({
       ...values,
-      [name]: value,
+      [name]: { ...values[name], value },
     });
 
-    if (validate) {
-      const newErrors = validate({ ...values, [name]: value });
-      setErrors({ ...errors, ...newErrors });
-    }
+    // if (validate) {
+    //   // const newErrors = validate({ ...values, [name]: value });
+    //   // setErrors({ ...errors, ...newErrors });
+    //   // TODO: set error here ...
+    // }
+
+    setFormState("dirty");
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -42,7 +50,8 @@ const useForm = ({ initialValues, validate, onSubmit }: UseFormOptions) => {
       const validationErrors = validate(values);
 
       if (Object.keys(validationErrors).length > 0) {
-        setErrors({ ...errors, ...validationErrors });
+        // TODO: set error here ...
+
         return;
       }
     }
@@ -50,7 +59,7 @@ const useForm = ({ initialValues, validate, onSubmit }: UseFormOptions) => {
     onSubmit(values);
   };
 
-  return { values, isVaild, errors, state, handleChange, handleSubmit };
+  return { values, isVaild, state, handleChange, handleSubmit };
 };
 
 export default useForm;

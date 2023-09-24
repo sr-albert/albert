@@ -3,6 +3,7 @@
 import { Form, redirect } from "react-router-dom";
 import "./Contact.scss";
 import useForm from "@/utils/hooks/useForm";
+import { IContactInitialValues } from "@/types/contact";
 
 export async function action({ request }: any) {
   const formData = await request.formData();
@@ -13,16 +14,27 @@ export async function action({ request }: any) {
 }
 
 export default function Contact() {
-  const { values, handleChange, isVaild } = useForm({
-    name: "",
-    email: "",
-    message: "",
-    reason: "OTHER",
+  const initialValues = {};
+  const { values, handleChange, isVaild, state } = useForm({
+    initialValues,
+    validate: (values: IContactInitialValues) => {
+      console.log({
+        entry: "validate from Contac page",
+        values,
+      });
+      return {};
+    },
+    onSubmit: (values: IContactInitialValues) => {
+      console.log(values);
+    },
   });
 
   const onSubmit = (event: any) => {
     event.preventDefault();
-    console.log(values);
+    console.log({
+      entry: "onSubmit from Contac page",
+      values,
+    });
   };
 
   return (
@@ -47,7 +59,6 @@ export default function Contact() {
           onChange={handleChange}
         />
 
-        <label htmlFor="input-email">Email</label>
         <input
           id="input-email"
           data-testid="input-email"
@@ -83,6 +94,8 @@ export default function Contact() {
         <button id="btn-submit" type="submit" disabled={!isVaild}>
           Submit
         </button>
+        {/* TODO: REMOVE it on production  */}
+        <span>{state}</span>
       </Form>
     </div>
   );
