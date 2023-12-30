@@ -94,8 +94,6 @@ export default function Contact() {
         <button id="btn-submit" type="submit" disabled={!isVaild}>
           Submit
         </button>
-        {/* TODO: REMOVE it on production  */}
-        <span>{state}</span>
       </Form>
     </div>
   );

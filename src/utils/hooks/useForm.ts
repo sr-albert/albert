@@ -59,7 +59,11 @@ const useForm = ({ initialValues, validate, onSubmit }: UseFormOptions) => {
     onSubmit(values);
   };
 
-  return { values, isVaild, state, handleChange, handleSubmit };
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    setFormState("dirty");
+  };
+
+  return { values, isVaild, state, handleChange, handleSubmit, handleBlur };
 };
 
 export default useForm;
