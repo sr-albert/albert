@@ -1,11 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Form, redirect } from "react-router-dom";
 import "./Contact.scss";
+import { Form, redirect } from "react-router-dom";
 import useForm from "@/utils/hooks/useForm";
 import { IContactInitialValues } from "@/types/contact";
 
-export async function action({ request }: any) {
+export async function action({ request }: any): Promise<Response> {
   const formData = await request.formData();
   const objData = Object.fromEntries(formData);
   const queryString = new URLSearchParams(objData).toString();
@@ -15,7 +15,7 @@ export async function action({ request }: any) {
 
 export default function Contact() {
   const initialValues = {};
-  const { values, handleChange, isVaild, state } = useForm({
+  const { values, handleChange, isVaild } = useForm({
     initialValues,
     validate: (values: IContactInitialValues) => {
       console.log({
@@ -29,7 +29,7 @@ export default function Contact() {
     },
   });
 
-  const onSubmit = (event: any) => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log({
       entry: "onSubmit from Contac page",
@@ -59,6 +59,7 @@ export default function Contact() {
           onChange={handleChange}
         />
 
+        <label htmlFor="input-email">Email</label>
         <input
           id="input-email"
           data-testid="input-email"
