@@ -1,8 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import useForm from "@/utils/hooks/useForm";
+import { Input, Select } from "@/components";
+import { IOption } from "@/types/contact-option";
+import { useForm } from "react-hook-form";
 import { Form, redirect } from "react-router-dom";
 import "./Contact.scss";
+import Button from "@/components/Button";
 
 export async function action({ request }: any): Promise<Response> {
   const formData = await request.formData();
@@ -13,171 +16,97 @@ export async function action({ request }: any): Promise<Response> {
 }
 
 export default function Contact() {
-  // const { values, handleChange, isVaild } = useForm({
-  //   initialValues: {
-  //     name: { value: "", error: "" },
-  //     email: { value: "", error: "" },
-  //     phone: { value: "", error: "" },
-  //     message: { value: "", error: "" },
-  //     kind: { value: "OTHER" },
-  //   },
-  //   validate: (values: Record<string, any>) => {
-  //     console.log({
-  //       entry: "validate from Contac page",
-  //       values,
-  //     });
-  //     return {};
-  //   },
-  //   onSubmit: (values: Record<string, any>) => {
-  //     console.log(values);
-  //   },
-  // });
-
-  // const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   console.log({
-  //     entry: "onSubmit from Contact page",
-  //     values,
-  //   });
-  // };
-
   return (
     <div id="contact-container">
-      Contact Form
-      {/* <Form
-        key="contact-form"
-        method="post"
-        aria-label="Contact me"
-        action="/contact"
-        onSubmit={onSubmit}
-      >
-        <h1>Contact me</h1>
-
-        <label htmlFor="input-full-name">Full Name</label>
-        <input
-          id="input-full-name"
-          data-testid="input-full-name"
-          name="name"
-          type="text"
-          placeholder="..."
-          aria-label="Full Name"
-          onChange={handleChange}
-        />
-
-        <label htmlFor="input-email">Email</label>
-        <input
-          id="input-email"
-          data-testid="input-email"
-          name="email"
-          type="text"
-          placeholder="..."
-          aria-label="Email"
-          onChange={handleChange}
-        />
-
-        <label htmlFor="input-phone">Phone</label>
-        <input
-          id="input-phone"
-          data-testid="input-phone"
-          name="phone"
-          type="text"
-          placeholder="+84"
-          aria-label="Phone"
-          onChange={handleChange}
-        />
-
-        <label htmlFor="select-reason">Reason</label>
-        <select
-          id="select-reason"
-          aria-disabled={true}
-          defaultValue="OTHER"
-          name="reason"
-          placeholder="..."
-          onChange={handleChange}
-        >
-          <option value="HIRING-ME">Hiring me</option>
-          <option value="OTHER">Other</option>
-        </select>
-
-        <label htmlFor="message">Message</label>
-        <textarea
-          id="message"
-          aria-label="Message"
-          name="message"
-          placeholder="..."
-          onChange={handleChange}
-        />
-
-        <button id="btn-submit" type="submit">
-          Submit
-        </button>
-      </Form> */}
+      <ContactForm />
     </div>
   );
 }
 
+const OPTIONS: IOption[] = [
+  {
+    value: "HIRING-ME",
+    name: "Hiring me",
+  },
+  {
+    value: "OTHER",
+    name: "Other",
+  },
+];
+
+interface IContactFormInput {
+  name: string;
+  email: string;
+  phone: string;
+  reason: string;
+  message: string;
+}
 function ContactForm() {
+  const { register, handleSubmit } = useForm<IContactFormInput>();
+  const onSubmit = (data: Record<string, any>) => console.log(data);
   return (
     <Form
       key="contact-form"
       method="post"
       aria-label="Contact me"
       action="/contact"
+      onSubmit={handleSubmit(onSubmit)}
     >
       <h1>Contact me</h1>
 
-      <label htmlFor="input-full-name">Full Name</label>
-      <input
+      <Input
         id="input-full-name"
         data-testid="input-full-name"
-        name="name"
         type="text"
         placeholder="..."
         aria-label="Full Name"
+        label="Full Name"
+        {...register("name")}
       />
 
-      <label htmlFor="input-email">Email</label>
-      <input
+      <Input
         id="input-email"
         data-testid="input-email"
-        name="email"
         type="text"
         placeholder="..."
         aria-label="Email"
+        label="Email"
+        {...register("email")}
       />
 
-      <label htmlFor="input-phone">Phone</label>
-      <input
+      <Input
         id="input-phone"
         data-testid="input-phone"
-        name="phone"
         type="text"
         placeholder="+84"
         aria-label="Phone"
+        label="Phone"
+        {...register("phone")}
       />
 
-      <label htmlFor="select-reason">Reason</label>
-      <select
+      <Select
+        label="Reason"
         id="select-reason"
-        aria-disabled={true}
         defaultValue="OTHER"
-        name="reason"
         placeholder="..."
-      >
-        <option value="HIRING-ME">Hiring me</option>
-        <option value="OTHER">Other</option>
-      </select>
+        options={OPTIONS}
+        {...register("reason")}
+      />
 
       <label htmlFor="message">Message</label>
       <textarea
         id="message"
         aria-label="Message"
-        name="message"
         placeholder="..."
+        {...register("message")}
       />
 
-      <button id="btn-submit" type="submit">
-        Submit
-      </button>
+      <Button
+        label="Submit"
+        id="btn-submit"
+        type="submit"
+        datatest-id="btn-submit"
+      />
     </Form>
   );
 }
