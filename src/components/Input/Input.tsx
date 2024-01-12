@@ -1,10 +1,12 @@
+import React from "react";
+
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  chidlren?: React.ReactNode;
+  variant?: "primary" | "secondary";
 }
 
-export default function Input({ label, name, ...other }: InputProps) {
-  return (
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ label, name, ...other }: InputProps, ref) => (
     <div className="input-wrapper">
       {label && (
         <label
@@ -15,6 +17,7 @@ export default function Input({ label, name, ...other }: InputProps) {
         </label>
       )}
       <input
+        ref={ref}
         name={name}
         {...other}
         style={{
@@ -25,5 +28,7 @@ export default function Input({ label, name, ...other }: InputProps) {
         }}
       />
     </div>
-  );
-}
+  )
+);
+
+export default Input;
