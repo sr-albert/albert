@@ -34,12 +34,6 @@ const useForm = ({ initialValues, validate, onSubmit }: UseFormOptions) => {
       [name]: { ...values[name], value },
     });
 
-    // if (validate) {
-    //   // const newErrors = validate({ ...values, [name]: value });
-    //   // setErrors({ ...errors, ...newErrors });
-    //   // TODO: set error here ...
-    // }
-
     setFormState("dirty");
   };
 
@@ -59,7 +53,7 @@ const useForm = ({ initialValues, validate, onSubmit }: UseFormOptions) => {
     onSubmit(values);
   };
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = (_event: React.MouseEvent<HTMLInputElement>) => {
     setFormState("dirty");
   };
 

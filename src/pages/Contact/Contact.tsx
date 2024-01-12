@@ -3,7 +3,6 @@
 import "./Contact.scss";
 import { Form, redirect } from "react-router-dom";
 import useForm from "@/utils/hooks/useForm";
-import { IContactInitialValues } from "@/types/contact";
 
 export async function action({ request }: any): Promise<Response> {
   const formData = await request.formData();
@@ -14,25 +13,29 @@ export async function action({ request }: any): Promise<Response> {
 }
 
 export default function Contact() {
-  const initialValues = {};
   const { values, handleChange, isVaild } = useForm({
-    initialValues,
-    validate: (values: IContactInitialValues) => {
+    initialValues: {
+      name: { value: "", error: "Please enter your name" },
+      email: { value: "", error: "Please enter your email address" },
+      phone: { value: "", error: "Please enter your phone number" },
+      message: { value: "", error: "Please enter your message" },
+      kind: { value: "OTHER" },
+    },
+    validate: (values: Record<string, any>) => {
       console.log({
         entry: "validate from Contac page",
         values,
       });
       return {};
     },
-    onSubmit: (values: IContactInitialValues) => {
+    onSubmit: (values: Record<string, any>) => {
       console.log(values);
     },
   });
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
     console.log({
-      entry: "onSubmit from Contac page",
+      entry: "onSubmit from Contact page",
       values,
     });
   };
@@ -70,6 +73,17 @@ export default function Contact() {
           onChange={handleChange}
         />
 
+        <label htmlFor="input-phone">Phone</label>
+        <input
+          id="input-phone"
+          data-testid="input-phone"
+          name="phone"
+          type="text"
+          placeholder="+84"
+          aria-label="Phone"
+          onChange={handleChange}
+        />
+
         <label htmlFor="select-reason">Reason</label>
         <select
           id="select-reason"
@@ -92,7 +106,7 @@ export default function Contact() {
           onChange={handleChange}
         />
 
-        <button id="btn-submit" type="submit" disabled={!isVaild}>
+        <button id="btn-submit" type="submit">
           Submit
         </button>
       </Form>
