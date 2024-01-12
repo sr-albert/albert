@@ -42,7 +42,11 @@ interface IContactFormInput {
   message: string;
 }
 function ContactForm() {
-  const { register, handleSubmit } = useForm<IContactFormInput>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IContactFormInput>();
   const onSubmit = (data: Record<string, any>) => console.log(data);
   return (
     <Form
@@ -61,6 +65,7 @@ function ContactForm() {
         placeholder="..."
         aria-label="Full Name"
         label="Full Name"
+        error={errors.name}
         {...register("name")}
       />
 
@@ -71,6 +76,7 @@ function ContactForm() {
         placeholder="..."
         aria-label="Email"
         label="Email"
+        error={errors.email}
         {...register("email")}
       />
 
@@ -81,6 +87,7 @@ function ContactForm() {
         placeholder="+84"
         aria-label="Phone"
         label="Phone"
+        error={errors.phone}
         {...register("phone")}
       />
 
@@ -101,11 +108,23 @@ function ContactForm() {
         {...register("message")}
       />
 
+      {errors.message && (
+        <span
+          className="input-error"
+          style={{
+            color: "red",
+          }}
+        >
+          {errors.message.message}
+        </span>
+      )}
+
       <Button
         label="Submit"
         id="btn-submit"
         type="submit"
         datatest-id="btn-submit"
+        isLoading={false}
       />
     </Form>
   );
