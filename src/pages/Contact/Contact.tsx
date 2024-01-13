@@ -1,12 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input, Select } from "@/components";
+import Button from "@/components/Button";
 import { IOption } from "@/types/contact-option";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Form, redirect } from "react-router-dom";
+import * as yup from "yup";
 import "./Contact.scss";
-import Button from "@/components/Button";
-
 export async function action({ request }: any): Promise<Response> {
   const formData = await request.formData();
   const objData = Object.fromEntries(formData);
@@ -34,6 +35,18 @@ const OPTIONS: IOption[] = [
   },
 ];
 
+const schema = yup.object({
+  name: yup.string().required("Name is required"),
+  email: yup.string().email("Email is invalid").required("Email is required"),
+  phone: yup
+    .string()
+    .matches(/(84|0[3|5|7|8|9])+([0-9]{9})\b/, "Phone number is not valid")
+    .required("Phone is required"),
+  reason: yup.string().required("Reason is required"),
+  message: yup.string().required("Message is required"),
+});
+
+const resolver = yupResolver(schema);
 interface IContactFormInput {
   name: string;
   email: string;
@@ -46,7 +59,9 @@ function ContactForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IContactFormInput>();
+  } = useForm<IContactFormInput>({
+    resolver: resolver,
+  });
   const onSubmit = (data: Record<string, any>) => console.log(data);
   return (
     <Form
