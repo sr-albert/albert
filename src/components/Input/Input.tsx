@@ -24,7 +24,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {...other}
         style={{
           width: "100%",
-          margin: "0px 0px 1.5rem 0px",
           border: "1px solid #ffffff",
           borderRadius: "4px",
         }}
