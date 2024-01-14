@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { Form, redirect } from "react-router-dom";
 import * as yup from "yup";
 import "./Contact.scss";
+import { getCurrentDateTime } from "@/utils/helper";
 export async function action({ request }: any): Promise<Response> {
   const formData = await request.formData();
   const objData = Object.fromEntries(formData);
@@ -94,7 +95,6 @@ function ContactForm() {
       const data: Request = {
         title: title,
         description: message,
-        createdAt: new Date().toISOString(),
 
         author: {
           name: name,
@@ -102,7 +102,8 @@ function ContactForm() {
           phone: phone,
         },
         kind: 0,
-        updatedAt: "",
+        createdAt: getCurrentDateTime(),
+        updatedAt: getCurrentDateTime(),
       };
 
       const res = createRequest(data);
@@ -131,6 +132,7 @@ function ContactForm() {
         aria-label="Full Name"
         label="Full Name"
         error={errors.name}
+        disabled={isSubmitting}
         {...register("name")}
       />
 
@@ -142,6 +144,7 @@ function ContactForm() {
         aria-label="Email"
         label="Email"
         error={errors.email}
+        disabled={isSubmitting}
         {...register("email")}
       />
 
@@ -153,6 +156,7 @@ function ContactForm() {
         aria-label="Phone"
         label="Phone"
         error={errors.phone}
+        disabled={isSubmitting}
         {...register("phone")}
       />
 
@@ -162,6 +166,7 @@ function ContactForm() {
         defaultValue="OTHER"
         placeholder="..."
         options={OPTIONS}
+        disabled={isSubmitting}
         {...register("reason")}
       />
 
@@ -171,6 +176,7 @@ function ContactForm() {
           id="message"
           aria-label="Message"
           placeholder="..."
+          disabled={isSubmitting}
           {...register("message")}
         />
         {errors.message && (
