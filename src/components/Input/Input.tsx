@@ -30,14 +30,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       />
 
       {error && (
-        <span
+        <p
           className="input-error"
           style={{
             color: "red",
           }}
         >
           {error.message}
-        </span>
+        </p>
       )}
     </div>
   )

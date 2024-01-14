@@ -6,7 +6,7 @@ export interface IOption {
    * The value of the option with UPPERCASE letters
    * e.g HIRING-ME, OTHER, etc.
    */
-  value: string;
+  value: number;
   /**
    * The name of the option with normal letters
    * e.g Hiring Me, Other, etc.

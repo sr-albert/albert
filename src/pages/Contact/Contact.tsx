@@ -2,8 +2,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input, Select } from "@/components";
 import Button from "@/components/Button";
+import { createRequest } from "@/services/request.service";
 import { IOption } from "@/types/contact-option";
+import { Request } from "@/types/request";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Form, redirect } from "react-router-dom";
 import * as yup from "yup";
@@ -26,11 +29,11 @@ export default function Contact() {
 
 const OPTIONS: IOption[] = [
   {
-    value: "HIRING-ME",
+    value: 1,
     name: "Hiring me",
   },
   {
-    value: "OTHER",
+    value: 0,
     name: "Other",
   },
 ];
@@ -40,9 +43,9 @@ const schema = yup.object({
   email: yup.string().email("Email is invalid").required("Email is required"),
   phone: yup
     .string()
-    .matches(/(84|0[3|5|7|8|9])+([0-9]{9})\b/, "Phone number is not valid")
+    .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/, "Phone number is not valid")
     .required("Phone is required"),
-  reason: yup.string().required("Reason is required"),
+  reason: yup.number().required("Reason is required"),
   message: yup.string().required("Message is required"),
 });
 
@@ -51,20 +54,67 @@ interface IContactFormInput {
   name: string;
   email: string;
   phone: string;
-  reason: string;
+  reason: number;
   message: string;
 }
 function ContactForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IContactFormInput>({
     resolver: resolver,
   });
-  const onSubmit = (data: Record<string, any>) => console.log(data);
+
+  useEffect(() => {
+    console.log("isSubmitting", isSubmitting);
+  }, [isSubmitting]);
+
+  const generateTitle = (reason: number): string => {
+    switch (reason) {
+      case 1:
+        return "Hiring me";
+      case 0:
+        return "Other";
+      default:
+        return "Unknown";
+    }
+  };
+
+  const onSubmit = async ({
+    name,
+    email,
+    phone,
+    reason,
+    message,
+  }: IContactFormInput) => {
+    try {
+      const title = generateTitle(reason);
+      // Generate title by reason
+      const data: Request = {
+        title: title,
+        description: message,
+        createdAt: new Date().toISOString(),
+
+        author: {
+          name: name,
+          email: email,
+          phone: phone,
+        },
+        kind: 0,
+        updatedAt: "",
+      };
+
+      const res = createRequest(data);
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Form
+      id="contact-form"
       key="contact-form"
       method="post"
       aria-label="Contact me"
@@ -115,31 +165,32 @@ function ContactForm() {
         {...register("reason")}
       />
 
-      <label htmlFor="message">Message</label>
-      <textarea
-        id="message"
-        aria-label="Message"
-        placeholder="..."
-        {...register("message")}
-      />
-
-      {errors.message && (
-        <span
-          className="input-error"
-          style={{
-            color: "red",
-          }}
-        >
-          {errors.message.message}
-        </span>
-      )}
+      <div className="selection-wrapper">
+        <label htmlFor="message">Message</label>
+        <textarea
+          id="message"
+          aria-label="Message"
+          placeholder="..."
+          {...register("message")}
+        />
+        {errors.message && (
+          <span
+            className="input-error"
+            style={{
+              color: "red",
+            }}
+          >
+            {errors.message.message}
+          </span>
+        )}
+      </div>
 
       <Button
         label="Submit"
         id="btn-submit"
         type="submit"
         datatest-id="btn-submit"
-        isLoading={false}
+        isLoading={isSubmitting}
       />
     </Form>
   );
