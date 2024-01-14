@@ -4,9 +4,9 @@ import "./app.scss";
 
 export function App() {
   return (
-    <div id="app">
+    <>
       <Outlet />
       <ActionBar />
-    </div>
+    </>
   );
 }

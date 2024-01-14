@@ -174,14 +174,7 @@ function ContactForm() {
           {...register("message")}
         />
         {errors.message && (
-          <span
-            className="input-error"
-            style={{
-              color: "red",
-            }}
-          >
-            {errors.message.message}
-          </span>
+          <span className="txt-error-helper">{errors.message.message}</span>
         )}
       </div>
 

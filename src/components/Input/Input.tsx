@@ -31,7 +31,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
       {error && (
         <p
-          className="input-error"
+          className="txt-error-helper"
           style={{
             color: "red",
           }}
