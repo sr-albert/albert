@@ -1,5 +1,7 @@
 import Input from "./Input";
-import Textarea from "./Textarea";
 import Select from "./Select";
 
-export { Input, Textarea, Select };
+import Textarea from "./Textarea";
+import Snackbar from "./Snackbar";
+
+export { Input, Textarea, Select, Snackbar };
