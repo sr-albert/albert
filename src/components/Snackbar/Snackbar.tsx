@@ -30,6 +30,11 @@ interface SnackbarProps {
    * The timeout duration for the snackbar to automatically close.
    */
   timeout?: number;
+
+  /**
+   * Specifies the animation of the snackbar.
+   */
+  animation?: "slide" | "fade";
 }
 
 export default function Snackbar({
@@ -38,6 +43,7 @@ export default function Snackbar({
   type = "default",
   anchor = "top-left",
   timeout = 3000,
+  animation = "slide",
 }: SnackbarProps) {
   const returnAnchor = () => {
     switch (anchor) {
@@ -105,6 +111,35 @@ export default function Snackbar({
     }
   };
 
+  const returnAnimClassName = () => {
+    let result = "animate__animated ";
+
+    if (animation === "slide") {
+      switch (anchor) {
+        case "bottom-left":
+          result += "animate__slideInUp";
+          break;
+        case "bottom-right":
+          result += "animate__slideInUp";
+          break;
+        case "top-left":
+          result += "animate__slideInDown";
+          break;
+        case "top-right":
+          result += "animate__slideInDown";
+          break;
+        case "center-center":
+          result += "animate__slideInDown";
+          break;
+        default:
+          result += "animate__slideInDown";
+          break;
+      }
+    }
+
+    return result;
+  };
+
   const [visible, setVisible] = useState(initialVisible);
 
   useEffect(() => {
@@ -131,6 +166,7 @@ export default function Snackbar({
         ...returnAnchor(),
         ...returnStyle(),
       }}
+      className={"snackbar-wrapper" + returnAnimClassName()}
     >
       <p>{message}</p>
     </div>
