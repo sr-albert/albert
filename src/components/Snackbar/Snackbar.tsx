@@ -1,4 +1,14 @@
+import { useEffect, useState } from "react";
+
 interface SnackbarProps {
+  /**
+   * Determines whether the snackbar is visible or not.
+   */
+  visible?: boolean;
+
+  /**
+   * Specifies the anchor position of the snackbar.
+   */
   anchor?:
     | "bottom-left"
     | "bottom-right"
@@ -6,13 +16,28 @@ interface SnackbarProps {
     | "top-right"
     | "center-center";
 
+  /**
+   * The message to be displayed in the snackbar.
+   */
   message: string;
+
+  /**
+   * Specifies the type of the snackbar.
+   */
   type?: "error" | "success" | "warning" | "info" | "default";
+
+  /**
+   * The timeout duration for the snackbar to automatically close.
+   */
+  timeout?: number;
 }
+
 export default function Snackbar({
+  visible: initialVisible = false,
   message,
   type = "default",
   anchor = "top-left",
+  timeout = 3000,
 }: SnackbarProps) {
   const returnAnchor = () => {
     switch (anchor) {
@@ -80,9 +105,26 @@ export default function Snackbar({
     }
   };
 
+  const [visible, setVisible] = useState(initialVisible);
+
+  useEffect(() => {
+    setVisible(initialVisible);
+
+    if (initialVisible) {
+      const counter = setInterval(() => {
+        setVisible(false);
+      }, timeout);
+
+      return () => {
+        clearInterval(counter);
+      };
+    }
+  }, [initialVisible, timeout]);
+
   return (
     <div
       style={{
+        display: visible ? "block" : "none",
         position: "fixed",
         padding: "0px 1rem",
         borderRadius: "5px",
