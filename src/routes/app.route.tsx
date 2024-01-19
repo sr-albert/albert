@@ -12,6 +12,7 @@ const appRoute = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+
       // {
       //   path: "/contact",
       //   element: <Contact />,
@@ -23,6 +24,10 @@ const appRoute = createBrowserRouter([
       // },
     ],
   },
+  // {
+  //   path: "/mine",
+  //   element: <Project />,
+  // },
   {
     path: "*",
     element: <NotFound />,
