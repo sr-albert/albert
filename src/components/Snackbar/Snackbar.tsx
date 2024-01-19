@@ -1,3 +1,4 @@
+import { AnchorType, SnackbarType } from "@/types/snackbar";
 import { useEffect, useState } from "react";
 
 interface SnackbarProps {
@@ -9,12 +10,7 @@ interface SnackbarProps {
   /**
    * Specifies the anchor position of the snackbar.
    */
-  anchor?:
-    | "bottom-left"
-    | "bottom-right"
-    | "top-left"
-    | "top-right"
-    | "center-center";
+  anchor?: AnchorType;
 
   /**
    * The message to be displayed in the snackbar.
@@ -24,7 +20,7 @@ interface SnackbarProps {
   /**
    * Specifies the type of the snackbar.
    */
-  type?: "error" | "success" | "warning" | "info" | "default";
+  type?: SnackbarType;
 
   /**
    * The timeout duration for the snackbar to automatically close.

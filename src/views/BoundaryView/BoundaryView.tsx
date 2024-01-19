@@ -10,6 +10,7 @@ export default function BoundaryView({ children }: BoundaryViewProps) {
       }}
     >
       {children}
+      <div className="snackbar-container"></div>
     </div>
   );
 }
