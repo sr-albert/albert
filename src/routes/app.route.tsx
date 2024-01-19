@@ -11,15 +11,15 @@ const appRoute = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-      {
-        path: "/contact",
-        element: <Contact />,
-        action: actionContactSubmit,
-      },
-      {
-        path: "/project",
-        element: <Project />,
-      },
+      // {
+      //   path: "/contact",
+      //   element: <Contact />,
+      //   action: actionContactSubmit,
+      // },
+      // {
+      //   path: "/project",
+      //   element: <Project />,
+      // },
     ],
   },
 ]);

@@ -10,12 +10,12 @@ export const mockActionBar: ItemProps[] = [
     href: "/",
     description: "Home page",
   },
-  {
-    id: "contact",
-    name: "Contact",
-    href: "/contact",
-    description: "Contact page",
-  },
+  // {
+  //   id: "contact",
+  //   name: "Contact",
+  //   href: "/contact",
+  //   description: "Contact page",
+  // },
   {
     id: "linkedin",
     name: "LinkedIn",
