@@ -1,5 +1,6 @@
 import { App } from "@/app";
 import { Contact, Home, Project, actionContactSubmit } from "@/pages";
+import NotFound from "@/views/NotFound/NotFound";
 import { createBrowserRouter } from "react-router-dom";
 
 const appRoute = createBrowserRouter([
@@ -21,6 +22,10 @@ const appRoute = createBrowserRouter([
       //   element: <Project />,
       // },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

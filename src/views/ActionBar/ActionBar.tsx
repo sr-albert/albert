@@ -4,12 +4,12 @@ import { ItemProps } from "./item.type";
 
 // Create a list of dummy data to render
 export const mockActionBar: ItemProps[] = [
-  {
-    id: "home",
-    name: "Home",
-    href: "/",
-    description: "Home page",
-  },
+  // {
+  //   id: "home",
+  //   name: "Home",
+  //   href: "/",
+  //   description: "Home page",
+  // },
   // {
   //   id: "contact",
   //   name: "Contact",
