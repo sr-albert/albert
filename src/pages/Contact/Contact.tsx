@@ -1,9 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Form, redirect } from "react-router-dom";
+import { Snackbar } from "@/components";
+import React from "react";
+import { redirect } from "react-router-dom";
 import "./Contact.scss";
-
-export async function action({ request }: any) {
+import { ContactForm } from "./ContactForm";
+export async function action({ request }: any): Promise<Response> {
   const formData = await request.formData();
   const objData = Object.fromEntries(formData);
   const queryString = new URLSearchParams(objData).toString();
@@ -11,64 +13,27 @@ export async function action({ request }: any) {
   return redirect(`/contact?${queryString}`);
 }
 
+interface IContactContext {
+  setShowSnackbar: (showSnackbar: boolean) => void;
+}
+
+export const ContactContext = React.createContext<IContactContext>({
+  setShowSnackbar: () => {},
+});
+
 export default function Contact() {
-  const onSubmit = () => {};
+  const [showSnackbar, setShowSnackbar] = React.useState(false);
 
   return (
-    <div id="contact-container">
-      <Form
-        key="contact-form"
-        method="post"
-        aria-label="Contact me"
-        action="/contact"
-        onSubmit={onSubmit}
-      >
-        <h1>Contact me</h1>
+    <ContactContext.Provider value={{ setShowSnackbar }}>
+      <div id="contact-container">
+        <ContactForm />
 
-        <label htmlFor="input-full-name">Full Name</label>
-        <input
-          id="input-full-name"
-          data-testid="input-full-name"
-          name="fullName"
-          type="text"
-          placeholder="..."
-          aria-label="Full Name"
+        <Snackbar
+          visible={showSnackbar}
+          message={"TestTestTestTestTestTestTest"}
         />
-
-        <label htmlFor="input-email">Email</label>
-        <input
-          id="input-email"
-          data-testid="input-email"
-          name="email"
-          type="text"
-          placeholder="..."
-          aria-label="Email"
-        />
-
-        <label htmlFor="select-reason">Reason</label>
-        <select
-          id="select-reason"
-          aria-disabled={true}
-          defaultValue="OTHER"
-          name="reason"
-          placeholder="..."
-        >
-          <option value="HIRING-ME">Hiring me</option>
-          <option value="OTHER">Other</option>
-        </select>
-
-        <label htmlFor="message">Message</label>
-        <textarea
-          id="message"
-          aria-label="Message"
-          name="message"
-          placeholder="..."
-        />
-
-        <button id="btn-submit" type="submit">
-          Submit
-        </button>
-      </Form>
-    </div>
+      </div>
+    </ContactContext.Provider>
   );
 }

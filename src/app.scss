@@ -16,7 +16,6 @@ textarea,
 select {
   width: 100%;
   padding: 0.5rem;
-  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
@@ -34,4 +33,13 @@ button {
 
 button[type="submit"] {
   margin-top: 1rem;
+}
+
+.txt-error-helper {
+  font-size: 12px;
+  line-height: 1;
+  color: red;
+  margin: 10px 0px 0px 0px;
+
+  width: fit-content;
 }

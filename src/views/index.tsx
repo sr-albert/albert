@@ -1,3 +1,4 @@
-import ActionBar from "./ActionBar";
+import { ActionBar, ActionBarSocial } from "./ActionBar";
+import BoundaryView from "./BoundaryView";
 
-export { ActionBar };
+export { ActionBar, BoundaryView };

@@ -6,7 +6,22 @@ export interface IContactRequest {
 }
 
 export interface IContactInitialValues {
-  name: string;
-  email: string;
-  message: string;
+  name?: string;
+  email?: string;
+  message?: string;
+  reason?: string;
+}
+
+export interface IContactErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+  reason?: string;
+}
+
+export interface IContactFormValue {
+  [key: string]: {
+    value?: string;
+    error?: string;
+  };
 }

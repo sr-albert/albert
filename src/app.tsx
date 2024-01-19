@@ -1,12 +1,14 @@
 import { Outlet } from "react-router-dom";
-import { ActionBar } from "./views";
+import { ActionBar, BoundaryView } from "./views";
 import "./app.scss";
+import { ActionBarSocial } from "./views/ActionBar";
 
 export function App() {
   return (
-    <div id="app">
+    <BoundaryView>
       <Outlet />
       <ActionBar />
-    </div>
+      <ActionBarSocial />
+    </BoundaryView>
   );
 }
