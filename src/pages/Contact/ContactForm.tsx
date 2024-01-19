@@ -42,7 +42,7 @@ interface IContactFormInput {
   message: string;
 }
 
-export function ContactForm() {
+export const ContactForm = React.forwardRef(() => {
   const {
     register,
     handleSubmit,
@@ -96,6 +96,7 @@ export function ContactForm() {
 
       if (res.status === 200) {
         setShowSnackbar(true);
+        control._reset();
       }
     } catch (error) {
       console.error(error);
@@ -115,22 +116,16 @@ export function ContactForm() {
     >
       <h1>Contact me</h1>
 
-      <Controller
-        control={control}
+      <Input
+        id="input-full-name"
+        label="Full Name"
+        error={errors.name}
+        placeholder="..."
+        type="text"
         data-testid="input-full-name"
         aria-label="Full Name"
         disabled={formSubmitting}
         {...register("name")}
-        render={({ field }) => (
-          <Input
-            id="input-full-name"
-            label="Full Name"
-            error={errors.name}
-            placeholder="..."
-            type="text"
-            {...field}
-          />
-        )}
       />
 
       <Input
@@ -190,4 +185,4 @@ export function ContactForm() {
       />
     </Form>
   );
-}
+});
