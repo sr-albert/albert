@@ -1,5 +1,5 @@
 import { App } from "@/app";
-import { Contact, Home, Project, actionContactSubmit } from "@/pages";
+import { Home } from "@/pages";
 import NotFound from "@/views/NotFound/NotFound";
 import { createBrowserRouter } from "react-router-dom";
 
