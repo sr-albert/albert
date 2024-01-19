@@ -1,0 +1,11 @@
+.snackbar-wrapper {
+  &__top-left {
+    top: 10px;
+    left: 10px;
+  }
+
+  &__bottom-left {
+    bottom: 10px;
+    left: 10px;
+  }
+}
