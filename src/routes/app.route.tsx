@@ -1,5 +1,5 @@
 import { App } from "@/app";
-import { Home } from "@/pages";
+import { Home, Project } from "@/pages";
 import NotFound from "@/views/NotFound/NotFound";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -24,10 +24,10 @@ const appRoute = createBrowserRouter([
       // },
     ],
   },
-  // {
-  //   path: "/mine",
-  //   element: <Project />,
-  // },
+  {
+    path: "/mine",
+    element: <Project />,
+  },
   {
     path: "*",
     element: <NotFound />,
