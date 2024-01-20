@@ -1,6 +1,14 @@
+import {
+  DEFAULTICON,
+  IcAndroidSVG,
+  IcAngularSVG,
+  IcFastAPISVG,
+  IcIosSVG,
+  IcPythonSVG,
+  IcReactSVG,
+} from "@/assets";
 import { getProjects } from "@/services/project.service";
-import { IProject } from "@/types/project";
-import { useEffect } from "react";
+import { IPlatform, IProject } from "@/types/project";
 import { Link, useLoaderData } from "react-router-dom";
 import "./ProjectDetailView.scss";
 
@@ -14,32 +22,50 @@ export default function ProjectDetailView() {
   const { id, name, description, platforms, tags, techStack, screenshots } =
     loaderData as IProject;
 
-  useEffect(() => {
-    console.log(loaderData);
-  });
-
   return (
     <div
       className="project-detail-container"
       data-testid={`project-detail-${id}`}
     >
-      <div className="images-wrapper"></div>
       <div className="detail-wrapper">
         <h1>{name}</h1>
 
         <span>{description}</span>
-
-        <div className="detail-wrapper__links">
-          {platforms.map(({ url, name }) => {
-            return <Link to={url}>{name}</Link>;
-          })}
-        </div>
-
+        <AvailablePlatforms platforms={platforms} />
         <Tags tags={tags} />
         <Stacks stacks={techStack} />
-
-        <ImagesDisplay images={screenshots} />
       </div>
+
+      <ImagesDisplay images={screenshots} />
+    </div>
+  );
+}
+
+interface IAvailablePlatformsProps {
+  platforms: IPlatform[];
+}
+function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
+  return (
+    <div className="detail-wrapper__links">
+      <h2>Available on</h2>
+      {platforms.map(({ url, name }, idx) => {
+        return (
+          <Link
+            to={url}
+            key={idx}
+            style={{
+              display: "inline-block",
+              backgroundColor: "#f5f5f5",
+              borderRadius: "20px",
+              color: "#000",
+              textAlign: "center",
+              padding: "5px 30px",
+            }}
+          >
+            {name}
+          </Link>
+        );
+      })}
     </div>
   );
 }
@@ -50,15 +76,32 @@ interface ITagProps {
 export function Tags({ tags }: ITagProps) {
   return (
     <div
-      className="tag-wrapper"
+      className="tag-wrapper row"
       style={{
-        display: "flex",
-        gap: "10px",
+        gap: 10,
+        alignItems: "center",
       }}
     >
       <h2>Tags</h2>
-      {tags.map((tag) => {
-        return <div className="tag">{tag}</div>;
+
+      {tags.map((tag, idx) => {
+        return (
+          <p
+            className="tag"
+            key={idx}
+            style={{
+              display: "inline-block",
+              backgroundColor: "#f5f5f5",
+              borderRadius: "20px",
+              color: "#000",
+              textAlign: "center",
+              padding: "5px 10px",
+              fontSize: "0.7rem",
+            }}
+          >
+            {tag}
+          </p>
+        );
       })}
     </div>
   );
@@ -68,6 +111,25 @@ interface IStacksProps {
   stacks: string[];
 }
 export function Stacks({ stacks }: IStacksProps) {
+  const renderStackIcon = (stack: string): string => {
+    switch (stack.toLowerCase()) {
+      case "android":
+        return IcAndroidSVG;
+      case "ios":
+        return IcIosSVG;
+      case "react":
+        return IcReactSVG;
+      case "python":
+        return IcPythonSVG;
+      case "angular":
+        return IcAngularSVG;
+      case "fast api":
+        return IcFastAPISVG;
+      default:
+        return DEFAULTICON;
+    }
+  };
+
   return (
     <div
       className="stack-wrapper"
@@ -77,9 +139,29 @@ export function Stacks({ stacks }: IStacksProps) {
       }}
     >
       <h2>Stacks</h2>
-      {stacks.map((stack) => {
-        return <div className="stack">{stack}</div>;
-      })}
+
+      <div
+        className="stack-wrapper row"
+        style={{
+          alignItems: "center",
+          gap: 20,
+        }}
+      >
+        {stacks.map((stack, idx) => {
+          return (
+            <img
+              key={idx}
+              alt={stack}
+              src={renderStackIcon(stack)}
+              height={32}
+              width={32}
+              style={{
+                filter: "invert(1)",
+              }}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -98,18 +180,7 @@ function ImagesDisplay({ images }: IImagesDisplayProps) {
       }}
     >
       {images.map((image, idx) => {
-        return (
-          <img
-            key={idx}
-            src={image}
-            alt="project-image"
-            height={150}
-            width={150}
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        );
+        return <img key={idx} src={image} alt="project-image" />;
       })}
     </div>
   );

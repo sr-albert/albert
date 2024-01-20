@@ -5,6 +5,15 @@
   justify-content: center;
   height: 100%;
   width: 100%;
+  max-width: 1200px;
+
+  @media screen and (max-width: 1200px) {
+    padding: 0 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0 10px;
+  }
 }
 
 .project-detail-container > .images-wrapper {
@@ -16,5 +25,25 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
+  }
+}
+
+.project-image-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  img {
+    height: auto;
+    width: 10%;
+    object-fit: cover;
+  }
+  @media screen and (max-width: 768px) {
+    img {
+      height: 50px;
+      width: 50px;
+    }
   }
 }
