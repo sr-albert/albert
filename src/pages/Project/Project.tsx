@@ -1,11 +1,12 @@
 import { projects } from "@/mocks/project.data.mock";
 import { IProject } from "@/types/project";
+import { NavLink } from "react-router-dom";
 import "./Project.scss";
 
 export default function ProjectPage() {
   return (
     <div className="project-wrapper">
-      <ProjectList />
+      <ProjectList />{" "}
     </div>
   );
 }
@@ -49,8 +50,8 @@ function ProjectList() {
 
 function ProjectCardView({ id, name }: IProject) {
   return (
-    <div className="project-card">
+    <NavLink to={`/mine/${id}`} className="project-card">
       <p>{name}</p>
-    </div>
+    </NavLink>
   );
 }
