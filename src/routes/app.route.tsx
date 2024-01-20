@@ -24,6 +24,7 @@ const appRoute = createBrowserRouter([
         path: "mine/:id",
         element: <ProjectDetailView />,
         loader: projectDetailLoader,
+        errorElement: <NotFound />,
       },
     ],
   },
