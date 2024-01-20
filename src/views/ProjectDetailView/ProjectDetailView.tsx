@@ -31,12 +31,13 @@ export default function ProjectDetailView() {
         <h1>{name}</h1>
 
         <span>{description}</span>
-        <AvailablePlatforms platforms={platforms} />
-        <Tags tags={tags} />
-        <Stacks stacks={techStack} />
+
+        {platforms && <AvailablePlatforms platforms={platforms} />}
+        {tags && <Tags tags={tags} />}
+        {techStack && <Stacks stacks={techStack} />}
       </div>
 
-      <ImagesDisplay images={screenshots} />
+      {screenshots && <ImagesDisplay images={screenshots} />}
     </div>
   );
 }
@@ -61,6 +62,7 @@ function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
               textAlign: "center",
               padding: "5px 30px",
             }}
+            target="_blank"
           >
             {name}
           </Link>
@@ -171,17 +173,21 @@ interface IImagesDisplayProps {
 }
 function ImagesDisplay({ images }: IImagesDisplayProps) {
   return (
-    <div
-      className="project-image-list"
-      style={{
-        display: "flex",
-        gap: "10px",
-        flexWrap: "wrap",
-      }}
-    >
-      {images.map((image, idx) => {
-        return <img key={idx} src={image} alt="project-image" />;
-      })}
+    <div className="project-image-list col">
+      <h2> Gallery </h2>
+
+      <div
+        className="row"
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 10,
+        }}
+      >
+        {images.map((image, idx) => {
+          return <img key={idx} src={image} alt="project-image" />;
+        })}
+      </div>
     </div>
   );
 }

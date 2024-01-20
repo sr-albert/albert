@@ -6,6 +6,7 @@
   height: 100%;
   width: 100%;
   max-width: 1200px;
+  gap: 20px;
 
   @media screen and (max-width: 1200px) {
     padding: 0 20px;
@@ -20,6 +21,8 @@
 }
 
 .detail-wrapper {
+  align-self: flex-start;
+
   &__links {
     display: flex;
     flex-direction: row;
@@ -29,9 +32,6 @@
 }
 
 .project-image-list {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   gap: 10px;
   margin-bottom: 20px;
 
