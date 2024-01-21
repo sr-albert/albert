@@ -27,6 +27,12 @@ export default function ProjectDetailView() {
       className="project-detail-container"
       data-testid={`project-detail-${id}`}
     >
+      {/* !!! DON'T REMOVE */}
+      {/* <div className="project-detail-container__header">
+        <Link to="/mine" className="back-link">
+          Projects
+        </Link>
+      </div> */}
       <div className="detail-wrapper">
         <h1>{name}</h1>
 

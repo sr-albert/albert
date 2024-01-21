@@ -1,5 +1,13 @@
 @import "../../styles/variables.scss";
 
+.project-wrapper {
+  &__header {
+    position: fixed;
+    top: 10%;
+    left: 5%;
+  }
+}
+
 .project-card {
   border: 1px solid #e8e8e8;
   border-radius: 4px;
@@ -17,4 +25,5 @@
 .project-list-wrapper {
   display: flex;
   gap: 10px;
+  flex-direction: row;
 }

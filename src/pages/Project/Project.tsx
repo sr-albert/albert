@@ -1,12 +1,18 @@
 import { projects } from "@/mocks/project.data.mock";
-import { IProject } from "@/types/project";
+import { IPlatform, IProject } from "@/types/project";
 import { NavLink } from "react-router-dom";
 import "./Project.scss";
 
 export default function ProjectPage() {
   return (
     <div className="project-wrapper">
-      <ProjectList />{" "}
+      <div className="project-wrapper__header">
+        <NavLink to="/" className="back-link">
+          {`< `}Home
+        </NavLink>
+      </div>
+
+      <ProjectList />
     </div>
   );
 }
@@ -36,9 +42,9 @@ function ProjectList() {
               startedAt={startedAt?.toString()}
               endedAt={endedAt?.toString()}
               tags={tags}
-              screenshots={screenshots}
+              screenshots={screenshots as string[]}
               roles={roles}
-              platforms={platforms}
+              platforms={platforms as IPlatform[]}
               techStack={techStack}
             />
           );
