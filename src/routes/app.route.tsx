@@ -1,9 +1,10 @@
 import { App } from "@/app";
-import { Contact, Home, Project } from "@/pages";
+import { Home, Project } from "@/pages";
 import { ErrorView } from "@/views";
 import NotFound from "@/views/NotFound/NotFound";
-import ProjectDetailView from "@/views/ProjectDetailView";
-import { projectDetailLoader } from "@/views/ProjectDetailView";
+import ProjectDetailView, {
+  projectDetailLoader,
+} from "@/views/ProjectDetailView";
 import { createBrowserRouter } from "react-router-dom";
 
 const appRoute = createBrowserRouter([

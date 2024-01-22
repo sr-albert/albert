@@ -19,7 +19,7 @@ export async function loader({ params }: any): Promise<IProject> {
 
 export default function ProjectDetailView() {
   const loaderData = useLoaderData();
-  const { id, name, description, platforms, tags, techStack, screenshots } =
+  const { id, name, description, platforms, techStack, screenshots } =
     loaderData as IProject;
 
   return (
