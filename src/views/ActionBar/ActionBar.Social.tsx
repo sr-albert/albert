@@ -5,16 +5,7 @@ import "./ActionBar.Social.scss";
 
 export default function ActionBarSocial() {
   return (
-    <div
-      className="social-group-container"
-      style={{
-        position: "fixed",
-        top: "10%",
-        right: "5%",
-        display: "flex",
-        flexDirection: "row",
-      }}
-    >
+    <div className="social-group-container">
       {mockActionBar.map(
         ({ id, name, href, description, isSocial }: ItemProps) => {
           if (!isSocial) return null;
