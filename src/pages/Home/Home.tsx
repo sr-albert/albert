@@ -1,3 +1,4 @@
+import { ActionBar, ActionBarSocial } from "@/views";
 import "./Home.scss";
 
 export default function Home() {
@@ -9,6 +10,9 @@ export default function Home() {
           <h1>I am Albert,</h1> <h1> a software Engineer</h1>
         </span>
       </section>
+
+      <ActionBar />
+      <ActionBarSocial />
     </div>
   );
 }

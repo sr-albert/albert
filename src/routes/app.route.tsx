@@ -1,6 +1,10 @@
 import { App } from "@/app";
-import { Home } from "@/pages";
+import { Home, Project } from "@/pages";
+import { ErrorView } from "@/views";
 import NotFound from "@/views/NotFound/NotFound";
+import ProjectDetailView, {
+  projectDetailLoader,
+} from "@/views/ProjectDetailView";
 import { createBrowserRouter } from "react-router-dom";
 
 const appRoute = createBrowserRouter([
@@ -13,19 +17,32 @@ const appRoute = createBrowserRouter([
         element: <Home />,
       },
       // {
-      //   path: "/contact",
+      //   path: "contact",
       //   element: <Contact />,
-      //   action: actionContactSubmit,
+      //   errorElement: <ErrorView />,
       // },
-      // {
-      //   path: "/project",
-      //   element: <Project />,
-      // },
+      {
+        path: "mine",
+        element: <Project />,
+        errorElement: <ErrorView />,
+      },
+      {
+        path: "works",
+        element: <Project />,
+        errorElement: <ErrorView />,
+      },
+      {
+        path: "works/:id",
+        element: <ProjectDetailView />,
+        loader: projectDetailLoader,
+        errorElement: <NotFound />,
+      },
     ],
   },
   {
     path: "*",
     element: <NotFound />,
+    errorElement: <ErrorView />,
   },
 ]);
 

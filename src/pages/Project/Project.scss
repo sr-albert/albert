@@ -1,0 +1,32 @@
+@import "../../styles/variables.scss";
+
+.project-wrapper {
+  &__header {
+    position: fixed;
+    top: 10%;
+    left: 5%;
+  }
+}
+
+.project-card {
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.09);
+  cursor: pointer;
+  padding: 5px 10px;
+
+  &:hover {
+    border: 1px solid $main-color;
+    color: $main-color;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  }
+}
+
+.project-list-wrapper {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  max-width: 80%;
+  margin: auto;
+  padding: 10px;
+}

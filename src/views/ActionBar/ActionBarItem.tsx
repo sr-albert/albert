@@ -1,4 +1,5 @@
 import {
+  Code,
   Smile as DefaultIcon,
   GitHub,
   Home as HomeIcon,
@@ -26,6 +27,8 @@ export default function ActionBarItem({
         return <Linkedin />;
       case "github":
         return <GitHub />;
+      case "works":
+        return <Code />;
       default:
         return <DefaultIcon />;
     }
