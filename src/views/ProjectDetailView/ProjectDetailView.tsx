@@ -32,11 +32,11 @@ export default function ProjectDetailView() {
           Back
         </Link>
       </div>
-      <div className="project-detail-container__content">
+      <div className="project-detail-container__content col">
         <h1>{name}</h1>
         <span>{description}</span>
         {platforms && <AvailablePlatforms platforms={platforms} />}
-        {tags && <Tags tags={tags} />}
+        {/* {tags && <Tags tags={tags} />} */}
         {techStack && <Stacks stacks={techStack} />}
       </div>
       {screenshots && <ImagesDisplay images={screenshots} />}
@@ -49,25 +49,27 @@ interface IAvailablePlatformsProps {
 }
 function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
   return (
-    <div className="detail-wrapper__links">
+    <div className="available-wrapper row">
       <h2>Available on</h2>
+
       {platforms.map(({ url, name }, idx) => {
         return (
-          <Link
-            to={url}
-            key={idx}
-            style={{
-              display: "inline-block",
-              backgroundColor: "#f5f5f5",
-              borderRadius: "20px",
-              color: "#000",
-              textAlign: "center",
-              padding: "5px 30px",
-            }}
-            target="_blank"
-          >
-            {name}
-          </Link>
+          <div className="link-wrapper">
+            <Link
+              to={url}
+              key={idx}
+              style={{
+                backgroundColor: "#f5f5f5",
+                borderRadius: "20px",
+                color: "#000",
+                textAlign: "center",
+                padding: "5px 30px",
+              }}
+              target="_blank"
+            >
+              {name}
+            </Link>
+          </div>
         );
       })}
     </div>
@@ -82,12 +84,10 @@ export function Tags({ tags }: ITagProps) {
     <div
       className="tag-wrapper row"
       style={{
-        gap: 10,
         alignItems: "center",
+        gap: 10,
       }}
     >
-      <h2>Tags</h2>
-
       {tags.map((tag, idx) => {
         return (
           <p
@@ -142,7 +142,7 @@ export function Stacks({ stacks }: IStacksProps) {
         gap: "10px",
       }}
     >
-      <h2>Stacks</h2>
+      {/* <h2>Stacks</h2> */}
       <div
         className="stack-wrapper row"
         style={{
