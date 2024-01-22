@@ -56,7 +56,7 @@ function ProjectList() {
 
 function ProjectCardView({ id, name }: IProject) {
   return (
-    <NavLink to={`/mine/${id}`} className="project-card">
+    <NavLink to={`${id}`} className="project-card">
       <p>{name}</p>
     </NavLink>
   );

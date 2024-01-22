@@ -1,5 +1,5 @@
 import { App } from "@/app";
-import { Home, Project } from "@/pages";
+import { Contact, Home, Project } from "@/pages";
 import { ErrorView } from "@/views";
 import NotFound from "@/views/NotFound/NotFound";
 import ProjectDetailView from "@/views/ProjectDetailView";
@@ -15,13 +15,23 @@ const appRoute = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+      // {
+      //   path: "contact",
+      //   element: <Contact />,
+      //   errorElement: <ErrorView />,
+      // },
       {
         path: "mine",
         element: <Project />,
         errorElement: <ErrorView />,
       },
       {
-        path: "mine/:id",
+        path: "works",
+        element: <Project />,
+        errorElement: <ErrorView />,
+      },
+      {
+        path: "works/:id",
         element: <ProjectDetailView />,
         loader: projectDetailLoader,
         errorElement: <NotFound />,
