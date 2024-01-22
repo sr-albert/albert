@@ -1,6 +1,7 @@
 import { mockActionBar } from "./ActionBar";
 import ActionBarItem from "./ActionBarItem";
 import { ItemProps } from "./item.type";
+import "./ActionBar.Social.scss";
 
 export default function ActionBarSocial() {
   return (

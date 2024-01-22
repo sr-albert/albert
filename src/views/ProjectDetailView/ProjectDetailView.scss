@@ -8,6 +8,24 @@
   max-width: 1200px;
   gap: 20px;
 
+  &__header {
+    position: fixed;
+    top: 5%;
+    left: 5%;
+  }
+
+  &__content {
+    padding: 2%;
+    margin-top: 5%;
+    align-self: flex-start;
+    &__links {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
   @media screen and (max-width: 1200px) {
     padding: 0 20px;
   }
@@ -18,17 +36,6 @@
 }
 
 .project-detail-container > .images-wrapper {
-}
-
-.detail-wrapper {
-  align-self: flex-start;
-
-  &__links {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
 }
 
 .project-image-list {

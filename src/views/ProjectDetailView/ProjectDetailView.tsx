@@ -27,22 +27,18 @@ export default function ProjectDetailView() {
       className="project-detail-container"
       data-testid={`project-detail-${id}`}
     >
-      {/* !!! DON'T REMOVE */}
-      {/* <div className="project-detail-container__header">
-        <Link to="works" className="back-link">
-          Projects
+      <div className="project-detail-container__header">
+        <Link to=".." relative="path" className="back-link">
+          Back
         </Link>
-      </div> */}
-      <div className="detail-wrapper">
+      </div>
+      <div className="project-detail-container__content">
         <h1>{name}</h1>
-
         <span>{description}</span>
-
         {platforms && <AvailablePlatforms platforms={platforms} />}
         {tags && <Tags tags={tags} />}
         {techStack && <Stacks stacks={techStack} />}
       </div>
-
       {screenshots && <ImagesDisplay images={screenshots} />}
     </div>
   );
@@ -147,7 +143,6 @@ export function Stacks({ stacks }: IStacksProps) {
       }}
     >
       <h2>Stacks</h2>
-
       <div
         className="stack-wrapper row"
         style={{
@@ -181,7 +176,6 @@ function ImagesDisplay({ images }: IImagesDisplayProps) {
   return (
     <div className="project-image-list col">
       <h2> Gallery </h2>
-
       <div
         className="row"
         style={{

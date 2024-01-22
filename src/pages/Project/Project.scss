@@ -11,21 +11,22 @@
 .project-card {
   border: 1px solid #e8e8e8;
   border-radius: 4px;
-  padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.09);
   cursor: pointer;
-  width: 150px;
-  height: 220px;
+  padding: 5px 10px;
 
   &:hover {
     border: 1px solid $main-color;
+    color: $main-color;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
   }
 }
+
 .project-list-wrapper {
   display: flex;
   gap: 10px;
-  flex-direction: row;
+  flex-direction: column;
   max-width: 80%;
   margin: auto;
+  padding: 10px;
 }
