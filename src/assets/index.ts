@@ -1,4 +1,5 @@
 export { default as DEFAULTICON } from "./icons/ic-default.svg";
+
 export { default as IcAndroidSVG } from "./icons/ic-android.svg";
 export { default as IcAppleSVG } from "./icons/ic-apple.svg";
 export { default as IcIosSVG } from "./icons/ic-ios.svg";

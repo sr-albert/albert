@@ -29,7 +29,7 @@ export default function ProjectDetailView() {
     >
       {/* !!! DON'T REMOVE */}
       {/* <div className="project-detail-container__header">
-        <Link to="/mine" className="back-link">
+        <Link to="works" className="back-link">
           Projects
         </Link>
       </div> */}
