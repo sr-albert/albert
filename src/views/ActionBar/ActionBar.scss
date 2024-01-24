@@ -4,6 +4,7 @@
 #action-bar {
   position: fixed;
   z-index: 100;
+  left: 5%;
 
   @media screen and (max-width: 1240px) {
     display: flex;
