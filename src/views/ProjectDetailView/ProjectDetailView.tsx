@@ -1,19 +1,8 @@
-import {
-  DEFAULTICON,
-  IcAndroidSVG,
-  IcAngularSVG,
-  IcDartSVG,
-  IcFastAPISVG,
-  IcFlutterSVG,
-  IcIosSVG,
-  IcPythonSVG,
-  IcReactSVG,
-} from "@/assets";
 import { getProjects } from "@/services/project.service";
 import { IPlatform, IProject } from "@/types/project";
+import { renderTechIcon } from "@/utils/helper";
 import { Link, useLoaderData } from "react-router-dom";
 import "./ProjectDetailView.scss";
-import { renderTechIcon } from "@/utils/helper";
 
 export async function loader({ params }: any): Promise<IProject> {
   const projectDetail = await getProjects(params.id);
@@ -32,7 +21,7 @@ export default function ProjectDetailView() {
     >
       <div className="project-detail-container__header">
         <Link to=".." relative="path" className="back-link">
-          Back
+          {`< Back`}
         </Link>
       </div>
       <div className="project-detail-container__content col">
@@ -41,8 +30,8 @@ export default function ProjectDetailView() {
         {platforms && <AvailablePlatforms platforms={platforms} />}
         {/* {tags && <Tags tags={tags} />} */}
         {techStack && <Stacks stacks={techStack} />}
+        {screenshots && <ImagesDisplay images={screenshots} />}
       </div>
-      {screenshots && <ImagesDisplay images={screenshots} />}
     </div>
   );
 }
@@ -126,7 +115,7 @@ export function Stacks({ stacks }: IStacksProps) {
         gap: "10px",
       }}
     >
-      {/* <h2>Stacks</h2> */}
+      <h2>Tech</h2>
       <div
         className="stack-wrapper row"
         style={{
@@ -158,16 +147,9 @@ interface IImagesDisplayProps {
 }
 function ImagesDisplay({ images }: IImagesDisplayProps) {
   return (
-    <div className="project-image-list col">
+    <div className="gallery-wrapper col">
       <h2> Gallery </h2>
-      <div
-        className="row"
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 10,
-        }}
-      >
+      <div className="images-list">
         {images.map((image, idx) => {
           return <img key={idx} src={image} alt="project-image" />;
         })}

@@ -154,7 +154,14 @@ export const projects = [
     endedAt: null,
     status: "live",
     tags: ["React JS", "NextJS", "TypeScript"],
-    urls: ["https://albert-test-r.netlify.app"],
+    urls: [],
+    platforms: [
+      {
+        name: "Web",
+        url: "https://share-youtube-video.vercel.app/",
+      },
+    ],
+
     roles: ["Full-stack software engineer"],
     techStack: ["React", "TypeScript", "NextJS", "Firebase"],
     kind: "pet-project",

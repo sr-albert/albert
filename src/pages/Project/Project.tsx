@@ -19,7 +19,7 @@ export default function ProjectPage() {
 
 function ProjectList() {
   return (
-    <div className="project-list-wrapper">
+    <div className="project-list-wrapper force-center">
       {projects.map(
         ({
           id,
