@@ -7,7 +7,7 @@ export const projects = [
     startedAt: "2020-10-01",
     endedAt: "2021-10-26",
     status: "live",
-    tags: ["Mobile Cross Platform", "Flutter", "Dart", "Azure", ".NET core"],
+    tags: ["Mobile Cross Platform", "Flutter", "Dart", "Android", "IOS"],
     urls: [
       "https://apps.apple.com/vn/app/smart-track-and-check/id1551747038",
       "https://play.google.com/store/apps/details?id=com.hpt.scs",
@@ -29,12 +29,8 @@ export const projects = [
         name: "IOS",
         url: "https://apps.apple.com/vn/app/smart-track-and-check/id1551747038",
       },
-      {
-        name: "Web",
-        url: "https://hpt.vn/en/hpt-product/detail/smart-track-and-check-solution/3155",
-      },
     ],
-    techStack: ["Flutter", "Dart"],
+    techStack: ["Flutter", "Dart", "Android", "IOS"],
   },
   {
     id: "dizim-ai",
@@ -66,7 +62,7 @@ export const projects = [
     id: "houze-invest",
     name: "Houze Invest - Real Estate Investment Platform",
     description:
-      "Houze Invest là nền tảng công nghệ kết nối các nhà đầu tư có nguồn vốn nhỏ lẻ với các cơ hội đầu tư tiềm năng đã được thẩm định chặt chẽ, tỷ suất lợi nhuận hấp dẫn, thông tin đầu tư minh bạch, quy trình đầu tư đơn giản và nhanh chóng. \n Đội ngũ nhân sự quản lý của Houze Invest có chuyên môn sâu và bề dày kinh nghiệm trong lĩnh vực đầu tư kinh doanh bất động sản, chứng khoán, quản lý quỹ, tài chính kế toán, quản lý doanh nghiệp... sẽ tư vấn và hỗ trợ tốt nhất cho khách hàng trong việc lựa chọn phương án đầu tư để tối ưu hiệu quả nhất.",
+      "Houze Invest is a digital platform that links investors with smaller capital to thoroughly vetted, high-potential investment opportunities. It offers attractive returns, transparency in investment information, and a straightforward, swift investment process. The management team at Houze Invest brings deep expertise and broad experience across various sectors including real estate investment, securities, fund management, finance, accounting, and business management. They are committed to providing top-notch advice and support, helping customers select an investment strategy that maximizes their returns.",
     startedAt: null,
     endedAt: null,
     status: "live",
@@ -89,13 +85,12 @@ export const projects = [
         url: "https://houzeinvest.vn/",
       },
     ],
-    techStack: ["ReactJS", "NextJS", "TypeScript"],
+    techStack: ["React", "NextJS", "TypeScript"],
   },
   {
     id: "houze-agent-pro",
     name: "Houze Agent Pro",
-    description:
-      "Unleash video creation with virtual presenters \n Make million-view videos in 5 minutes per video with AI virtual presenters or virtual influencers",
+    description: "Professional Real Estate Broker Application",
     startedAt: null,
     endedAt: null,
     status: "live",
@@ -130,7 +125,7 @@ export const projects = [
         url: "https://dizim.ai/",
       },
     ],
-    techStack: ["Angular", "Python", "Fast API"],
+    techStack: ["Flutter", "Dart"],
   },
   {
     id: "z-rooms",
@@ -148,7 +143,7 @@ export const projects = [
       "https://lh3.googleusercontent.com/pw/ADCreHcLJ5ubTCnizxpuWXr4CojUSXUAqlhqRlXIbp39ddoDF0LrdOTMd7MoXtAmcwYzaWS6PaZrGbCIiFCnUOXe_JxmAxnxP3CYmZOtS1CKgcUtTh_wCOCoHQM5U1ON-QXmj4xkQTxD__Z9tfYg_P1FPmHI=w2160-h1094-s-no-gm?authuser=0",
     ],
     roles: ["Full-stack software engineer"],
-    techStack: ["ReactJS", "TypeScript", "NextJS"],
+    techStack: ["React", "TypeScript", "NextJS"],
     platforms: [],
   },
   {
@@ -161,7 +156,7 @@ export const projects = [
     tags: ["React JS", "NextJS", "TypeScript"],
     urls: ["https://albert-test-r.netlify.app"],
     roles: ["Full-stack software engineer"],
-    techStack: ["ReactJS", "TypeScript", "NextJS", "Firebase"],
+    techStack: ["React", "TypeScript", "NextJS", "Firebase"],
     kind: "pet-project",
   },
 ];
