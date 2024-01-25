@@ -22,11 +22,13 @@ export const projects = [
     roles: ["Mobile Software Engineer"],
     platforms: [
       {
-        name: "Android",
+        id: "google-play",
+        name: "Google Play",
         url: "https://play.google.com/store/apps/details?id=com.hpt.scs",
       },
       {
-        name: "IOS",
+        id: "app-store",
+        name: "Apple Store",
         url: "https://apps.apple.com/vn/app/smart-track-and-check/id1551747038",
       },
     ],
@@ -52,7 +54,8 @@ export const projects = [
     roles: ["Full-stack software engineer"],
     platforms: [
       {
-        name: "Web",
+        id: "web",
+        name: "Website",
         url: "https://dizim.ai/",
       },
     ],
@@ -81,7 +84,8 @@ export const projects = [
     roles: ["Full-stack software engineer"],
     platforms: [
       {
-        name: "Web",
+        id: "web",
+        name: "Website",
         url: "https://houzeinvest.vn/",
       },
     ],
@@ -113,15 +117,18 @@ export const projects = [
     roles: ["Full-stack software engineer"],
     platforms: [
       {
-        name: "Android",
+        id: "google-play",
+        name: "Google Play",
         url: "https://play.google.com/store/apps/details?id=com.houze.agentpro&hl=vi&gl=US",
       },
       {
-        name: "IOS",
+        id: "app-store",
+        name: "Apple Store",
         url: "https://apps.apple.com/vn/app/houze-agent-pro/id1512356006",
       },
       {
-        name: "Web",
+        id: "web",
+        name: "Website",
         url: "https://dizim.ai/",
       },
     ],
@@ -157,7 +164,9 @@ export const projects = [
     urls: [],
     platforms: [
       {
-        name: "Web",
+        id: "web",
+
+        name: "Website",
         url: "https://albert-test-r.netlify.app/",
       },
     ],

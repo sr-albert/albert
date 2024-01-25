@@ -3,10 +3,13 @@ import {
   DEFAULTICON,
   IcAndroidSVG,
   IcAngularSVG,
+  IcAppleSVG,
+  IcAppstoreSVG,
   IcDartSVG,
   IcFastAPISVG,
   IcFirebaseSVG,
   IcFlutterSVG,
+  IcGooglePlaySVG,
   IcIosSVG,
   IcNextJSSVG,
   IcPythonSVG,
@@ -41,6 +44,10 @@ export const renderTechIcon = (tech: string): string => {
       return IcTypescriptSVG;
     case "firebase":
       return IcFirebaseSVG;
+    case "app-store":
+      return IcAppstoreSVG;
+    case "google-play":
+      return IcGooglePlaySVG;
     default:
       return DEFAULTICON;
   }

@@ -12,3 +12,5 @@ export { default as IcDartSVG } from "./icons/ic-dart.svg";
 export { default as IcNextJSSVG } from "./icons/ic-nextjs.svg";
 export { default as IcTypescriptSVG } from "./icons/ic-ts.svg";
 export { default as IcFirebaseSVG } from "./icons/ic-firebase.svg";
+export { default as IcAppstoreSVG } from "./icons/ic-appstore.svg";
+export { default as IcGooglePlaySVG } from "./icons/ic-gg-store.svg";

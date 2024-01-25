@@ -67,10 +67,13 @@ button[type="submit"] {
   ); // Translate it back by 50% of its own width and height to center it
 }
 
+.tag-block {
+  margin: 0px 15px;
+}
 .tag-block::before {
-  content: "< ";
+  content: "{";
 }
 
 .tag-block::after {
-  content: " >";
+  content: "}";
 }

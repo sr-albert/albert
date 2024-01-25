@@ -35,6 +35,8 @@ export interface IProject {
 export type ProjectStatus = "live" | "draft" | "archived" | "private";
 
 export interface IPlatform {
+  /** Generate automatically by mongodb */
+  id: string;
   /** Name of platform (e.g., web, Android or IOS) */
   name: string;
   /** Link to website, CH-Play or App Store */

@@ -44,25 +44,13 @@ function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
     <div className="available-wrapper row">
       <h2>Available on</h2>
 
-      <div className="links-list tag-block">
-        {platforms.map(({ url, name }, idx) => {
+      <div className="links-list">
+        {platforms.map(({ url, name, id }, idx) => {
           return (
-            <div className="link-wrapper">
-              <Link
-                to={url}
-                key={idx}
-                style={{
-                  backgroundColor: "#f5f5f5",
-                  borderRadius: "20px",
-                  color: "#000",
-                  textAlign: "center",
-                  padding: "5px 30px",
-                }}
-                target="_blank"
-              >
-                {name}
-              </Link>
-            </div>
+            <Link to={url} key={idx}>
+              <RenderTechIcon tech={id} />
+              {name}
+            </Link>
           );
         })}
       </div>
@@ -75,28 +63,10 @@ interface ITagProps {
 }
 export function Tags({ tags }: ITagProps) {
   return (
-    <div
-      className="tag-wrapper row"
-      style={{
-        alignItems: "center",
-        gap: 10,
-      }}
-    >
+    <div className="tag-wrapper row">
       {tags.map((tag, idx) => {
         return (
-          <p
-            className="tag"
-            key={idx}
-            style={{
-              display: "inline-block",
-              backgroundColor: "#f5f5f5",
-              borderRadius: "20px",
-              color: "#000",
-              textAlign: "center",
-              padding: "5px 10px",
-              fontSize: "0.7rem",
-            }}
-          >
+          <p className="tag" key={idx}>
             {tag}
           </p>
         );
@@ -112,26 +82,9 @@ export function Stacks({ stacks }: IStacksProps) {
   return (
     <div className="stack-wrapper">
       <h2>Tech</h2>
-      <div
-        className="stack-wrapper row tag-block"
-        style={{
-          alignItems: "center",
-          gap: 20,
-        }}
-      >
+      <div className="stacks-list row">
         {stacks.map((stack, idx) => {
-          return (
-            <img
-              key={idx}
-              alt={stack}
-              src={renderTechIcon(stack)}
-              height={32}
-              width={32}
-              style={{
-                filter: "invert(1)",
-              }}
-            />
-          );
+          return <RenderTechIcon tech={stack} idx={idx} />;
         })}
       </div>
     </div>
@@ -151,5 +104,26 @@ function ImagesDisplay({ images }: IImagesDisplayProps) {
         })}
       </div>
     </div>
+  );
+}
+
+function RenderTechIcon({
+  tech,
+  idx,
+}: {
+  tech: string;
+  idx?: string | number | undefined;
+}) {
+  return (
+    <img
+      key={idx || "default key"}
+      alt={tech}
+      src={renderTechIcon(tech)}
+      height={32}
+      width={32}
+      style={{
+        filter: "invert(1)",
+      }}
+    />
   );
 }
