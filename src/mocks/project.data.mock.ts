@@ -158,7 +158,7 @@ export const projects = [
     platforms: [
       {
         name: "Web",
-        url: "https://share-youtube-video.vercel.app/",
+        url: "https://albert-test-r.netlify.app/",
       },
     ],
 
