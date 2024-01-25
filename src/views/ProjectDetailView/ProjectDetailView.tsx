@@ -2,7 +2,9 @@ import {
   DEFAULTICON,
   IcAndroidSVG,
   IcAngularSVG,
+  IcDartSVG,
   IcFastAPISVG,
+  IcFlutterSVG,
   IcIosSVG,
   IcPythonSVG,
   IcReactSVG,
@@ -11,6 +13,7 @@ import { getProjects } from "@/services/project.service";
 import { IPlatform, IProject } from "@/types/project";
 import { Link, useLoaderData } from "react-router-dom";
 import "./ProjectDetailView.scss";
+import { renderTechIcon } from "@/utils/helper";
 
 export async function loader({ params }: any): Promise<IProject> {
   const projectDetail = await getProjects(params.id);
@@ -115,25 +118,6 @@ interface IStacksProps {
   stacks: string[];
 }
 export function Stacks({ stacks }: IStacksProps) {
-  const renderStackIcon = (stack: string): string => {
-    switch (stack.toLowerCase()) {
-      case "android":
-        return IcAndroidSVG;
-      case "ios":
-        return IcIosSVG;
-      case "react":
-        return IcReactSVG;
-      case "python":
-        return IcPythonSVG;
-      case "angular":
-        return IcAngularSVG;
-      case "fast api":
-        return IcFastAPISVG;
-      default:
-        return DEFAULTICON;
-    }
-  };
-
   return (
     <div
       className="stack-wrapper"
@@ -155,7 +139,7 @@ export function Stacks({ stacks }: IStacksProps) {
             <img
               key={idx}
               alt={stack}
-              src={renderStackIcon(stack)}
+              src={renderTechIcon(stack)}
               height={32}
               width={32}
               style={{
