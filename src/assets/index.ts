@@ -7,3 +7,8 @@ export { default as IcReactSVG } from "./icons/ic-react.svg";
 export { default as IcAngularSVG } from "./icons/ic-angular.svg";
 export { default as IcFastAPISVG } from "./icons/ic-fastapi.svg";
 export { default as IcPythonSVG } from "./icons/ic-python.svg";
+export { default as IcFlutterSVG } from "./icons/ic-flutter.svg";
+export { default as IcDartSVG } from "./icons/ic-dart.svg";
+export { default as IcNextJSSVG } from "./icons/ic-nextjs.svg";
+export { default as IcTypescriptSVG } from "./icons/ic-ts.svg";
+export { default as IcFirebaseSVG } from "./icons/ic-firebase.svg";
