@@ -23,6 +23,13 @@ export const mockActionBar: ItemProps[] = [
     description: "Works page",
   },
   {
+    id: "leetcode",
+    name: "Leetcode",
+    href: "https://leetcode.com/sr-albert/",
+    description: "Leetcode profile",
+    isSocial: true,
+  },
+  {
     id: "linkedin",
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/tam-nguyen-6a1576183/",
