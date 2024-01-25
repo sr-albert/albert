@@ -66,3 +66,11 @@ button[type="submit"] {
     -50%
   ); // Translate it back by 50% of its own width and height to center it
 }
+
+.tag-block::before {
+  content: "< ";
+}
+
+.tag-block::after {
+  content: " >";
+}

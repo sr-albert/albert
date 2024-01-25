@@ -11,7 +11,7 @@ export async function loader({ params }: any): Promise<IProject> {
 
 export default function ProjectDetailView() {
   const loaderData = useLoaderData();
-  const { id, name, description, platforms, techStack, screenshots } =
+  const { id, name, description, platforms, techStack, screenshots, tags } =
     loaderData as IProject;
 
   return (
@@ -26,9 +26,9 @@ export default function ProjectDetailView() {
       </div>
       <div className="project-detail-container__content col">
         <h1>{name}</h1>
+        {tags && <Tags tags={tags} />}
         <span>{description}</span>
         {platforms && <AvailablePlatforms platforms={platforms} />}
-        {/* {tags && <Tags tags={tags} />} */}
         {techStack && <Stacks stacks={techStack} />}
         {screenshots && <ImagesDisplay images={screenshots} />}
       </div>
@@ -44,26 +44,28 @@ function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
     <div className="available-wrapper row">
       <h2>Available on</h2>
 
-      {platforms.map(({ url, name }, idx) => {
-        return (
-          <div className="link-wrapper">
-            <Link
-              to={url}
-              key={idx}
-              style={{
-                backgroundColor: "#f5f5f5",
-                borderRadius: "20px",
-                color: "#000",
-                textAlign: "center",
-                padding: "5px 30px",
-              }}
-              target="_blank"
-            >
-              {name}
-            </Link>
-          </div>
-        );
-      })}
+      <div className="links-list tag-block">
+        {platforms.map(({ url, name }, idx) => {
+          return (
+            <div className="link-wrapper">
+              <Link
+                to={url}
+                key={idx}
+                style={{
+                  backgroundColor: "#f5f5f5",
+                  borderRadius: "20px",
+                  color: "#000",
+                  textAlign: "center",
+                  padding: "5px 30px",
+                }}
+                target="_blank"
+              >
+                {name}
+              </Link>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -108,16 +110,10 @@ interface IStacksProps {
 }
 export function Stacks({ stacks }: IStacksProps) {
   return (
-    <div
-      className="stack-wrapper"
-      style={{
-        display: "flex",
-        gap: "10px",
-      }}
-    >
+    <div className="stack-wrapper">
       <h2>Tech</h2>
       <div
-        className="stack-wrapper row"
+        className="stack-wrapper row tag-block"
         style={{
           alignItems: "center",
           gap: 20,

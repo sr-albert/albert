@@ -50,6 +50,9 @@
 }
 
 .project-detail-container__content > .stack-wrapper {
+  display: flex;
+  flex-direction: row;
+
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
@@ -59,11 +62,16 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
 
+  .links-list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
   .link-wrapper {
     display: inline-block;
     align-self: center;
+    gap: 10px;
   }
 
   @media screen and (max-width: 768px) {
