@@ -1,9 +1,7 @@
-import { format } from "date-fns";
 import {
   DEFAULTICON,
   IcAndroidSVG,
   IcAngularSVG,
-  IcAppleSVG,
   IcAppstoreSVG,
   IcDartSVG,
   IcFastAPISVG,
@@ -16,6 +14,7 @@ import {
   IcReactSVG,
   IcTypescriptSVG,
 } from "@/assets";
+import { format } from "date-fns";
 export const getCurrentDateTime = (): string => {
   return format(new Date(), "yyyy-MM-dd HH:mm:ss");
 };
