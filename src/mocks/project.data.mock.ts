@@ -175,4 +175,27 @@ export const projects = [
     techStack: ["React", "TypeScript", "NextJS", "Firebase"],
     kind: "pet-project",
   },
+  {
+    id: "recipe-sharing",
+    name: "Recipe",
+    description: `Our Recipe Sharing Website is a platform that brings together food lovers from all over the world. Users can explore, share, and try out a wide variety of dishes shared by other users, turning their own kitchen into a global culinary journey. The website features a user-friendly interface that allows users to easily search for specific recipes or browse through various categories. Each recipe comes with a detailed list of ingredients, step-by-step cooking instructions, and high-quality photos.
+    One of the unique features of our platform is the random recipe generator, which can help users who are unsure about what to cook to find inspiration. Users can also rate and review recipes, creating a community-driven rating system that helps others find the best and most reliable recipes. Furthermore, users have the ability to create their own profile, where they can share their recipes, bookmark favorites, and interact with other users.
+    To ensure a smooth user experience, we have incorporated error handling mechanisms that allow the site to function seamlessly despite any potential API limitations. Our Recipe Sharing Website provides an interactive, engaging, and user-friendly platform for food enthusiasts to explore, share, and enjoy the art of cooking.`,
+    startedAt: "2024-26-01",
+    endedAt: "2024-28-01",
+    status: "live",
+    tags: ["React JS", "NextJS", "TypeScript"],
+    urls: [],
+    platforms: [
+      {
+        id: "web",
+        name: "Website",
+        url: "https://dazzling-pony-155940.netlify.app/",
+      },
+    ],
+
+    roles: ["Pet project"],
+    techStack: ["React", "TypeScript", "NextJS", "Firebase"],
+    kind: "pet-project",
+  },
 ];
