@@ -27,7 +27,9 @@ export default function ProjectDetailView() {
       <div className="project-detail-container__content col">
         <h1>{name}</h1>
         {tags && <Tags tags={tags} />}
-        <span>{description}</span>
+        <div style={{ whiteSpace: "normal" }}>
+          <span>{description}</span>
+        </div>
         {platforms && <AvailablePlatforms platforms={platforms} />}
         {techStack && <Stacks stacks={techStack} />}
         {screenshots && <ImagesDisplay images={screenshots} />}
