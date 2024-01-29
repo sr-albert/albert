@@ -4,6 +4,9 @@
 #app {
   max-width: 1280px;
   margin: 0 auto;
+  align-self: flex-start;
+  height: 100vh;
+  width: 100vw;
 }
 
 form {
@@ -42,4 +45,35 @@ button[type="submit"] {
   margin: 10px 0px 0px 0px;
 
   width: fit-content;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.force-center {
+  position: fixed; // Position fixed to make it relative to the viewport
+  top: 50%; // Position it at 50% from the top
+  left: 50%; // Position it at 50% from the left
+  transform: translate(
+    -50%,
+    -50%
+  ); // Translate it back by 50% of its own width and height to center it
+}
+
+.tag-block {
+  margin: 0px 15px;
+}
+.tag-block::before {
+  content: "{";
+}
+
+.tag-block::after {
+  content: "}";
 }

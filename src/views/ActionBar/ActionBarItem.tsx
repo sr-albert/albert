@@ -1,4 +1,5 @@
 import {
+  Code,
   Smile as DefaultIcon,
   GitHub,
   Home as HomeIcon,
@@ -7,6 +8,7 @@ import {
 } from "react-feather";
 import { NavLink, useMatch } from "react-router-dom";
 import { ItemProps } from "./item.type";
+import { IcLeetcodeSVG } from "@/assets";
 
 export default function ActionBarItem({
   id,
@@ -26,6 +28,12 @@ export default function ActionBarItem({
         return <Linkedin />;
       case "github":
         return <GitHub />;
+      case "works":
+        return <Code />;
+      case "leetcode":
+        return (
+          <img alt="icon leetcode" width={24} height={24} src={IcLeetcodeSVG} />
+        );
       default:
         return <DefaultIcon />;
     }
