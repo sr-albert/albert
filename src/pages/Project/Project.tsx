@@ -1,4 +1,5 @@
 import BackLink from "@/components/BackLink";
+import DefaultImage from "@/components/DefaultImage/DefaultImage";
 import { projects } from "@/mocks/project.data.mock";
 import {
   Card,
@@ -66,7 +67,7 @@ function ProjectList() {
                   height: 300,
                 }}
               >
-                {screenshots && (
+                {screenshots ? (
                   <img
                     src={screenshots[0]}
                     alt={name}
@@ -76,6 +77,8 @@ function ProjectList() {
                       objectFit: "cover",
                     }}
                   />
+                ) : (
+                  <DefaultImage />
                 )}
               </CardMedia>
 
