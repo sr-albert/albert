@@ -1,8 +1,9 @@
+import BackLink from "@/components/BackLink";
 import { getProjects } from "@/services/project.service";
 import { IPlatform, IProject } from "@/types/project";
 import { renderTechIcon } from "@/utils/helper";
+import { Chip, Container, Typography } from "@mui/material";
 import { Link, useLoaderData } from "react-router-dom";
-import "./ProjectDetailView.scss";
 
 export async function loader({ params }: any): Promise<IProject> {
   const projectDetail = await getProjects(params.id);
@@ -15,26 +16,26 @@ export default function ProjectDetailView() {
     loaderData as IProject;
 
   return (
-    <div
+    <Container
       className="project-detail-container"
       data-testid={`project-detail-${id}`}
     >
-      <div className="project-detail-container__header">
-        <Link to=".." relative="path" className="back-link">
-          {`< Back`}
-        </Link>
-      </div>
-      <div className="project-detail-container__content col">
-        <h1>{name}</h1>
+      <Container className="project-detail-container__header">
+        <BackLink />
+      </Container>
+      <Container className="project-detail-container__content col">
+        <Typography variant="h1">{name}</Typography>
+
         {tags && <Tags tags={tags} />}
-        <div style={{ whiteSpace: "normal" }}>
-          <span>{description}</span>
-        </div>
+        <Container style={{ whiteSpace: "normal" }}>
+          <Typography variant="caption">{description}</Typography>
+        </Container>
+
         {platforms && <AvailablePlatforms platforms={platforms} />}
         {techStack && <Stacks stacks={techStack} />}
         {screenshots && <ImagesDisplay images={screenshots} />}
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
 
@@ -43,10 +44,10 @@ interface IAvailablePlatformsProps {
 }
 function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
   return (
-    <div className="available-wrapper row">
-      <h2>Available on</h2>
+    <Container className="available-wrapper row">
+      <Typography variant="h2">Available on</Typography>
 
-      <div className="links-list">
+      <Container className="links-list">
         {platforms.map(({ url, name, id }, idx) => {
           return (
             <Link to={url} key={idx}>
@@ -55,8 +56,8 @@ function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
             </Link>
           );
         })}
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
 
@@ -65,15 +66,17 @@ interface ITagProps {
 }
 export function Tags({ tags }: ITagProps) {
   return (
-    <div className="tag-wrapper row">
+    <Container
+      className="tag-wrapper row"
+      sx={{
+        display: "flex",
+        gap: 1,
+      }}
+    >
       {tags.map((tag, idx) => {
-        return (
-          <p className="tag" key={idx}>
-            {tag}
-          </p>
-        );
+        return <Chip className="tag" key={idx} label={tag} />;
       })}
-    </div>
+    </Container>
   );
 }
 
@@ -82,14 +85,14 @@ interface IStacksProps {
 }
 export function Stacks({ stacks }: IStacksProps) {
   return (
-    <div className="stack-wrapper">
-      <h2>Tech</h2>
-      <div className="stacks-list row">
+    <Container className="stack-wrapper">
+      <Typography variant="h2">Tech</Typography>
+      <Container className="stacks-list row">
         {stacks.map((stack, idx) => {
           return <RenderTechIcon tech={stack} idx={idx} />;
         })}
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
 
@@ -98,14 +101,14 @@ interface IImagesDisplayProps {
 }
 function ImagesDisplay({ images }: IImagesDisplayProps) {
   return (
-    <div className="gallery-wrapper col">
-      <h2> Gallery </h2>
-      <div className="images-list">
+    <Container className="gallery-wrapper col">
+      <Typography variant="h2"> Gallery </Typography>
+      <Container className="images-list">
         {images.map((image, idx) => {
           return <img key={idx} src={image} alt="project-image" />;
         })}
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
 
