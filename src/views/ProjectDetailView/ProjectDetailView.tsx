@@ -1,9 +1,18 @@
 import BackLink from "@/components/BackLink";
+import { ImageCarousel } from "@/components/Carousel";
 import { getProjects } from "@/services/project.service";
 import { IPlatform, IProject } from "@/types/project";
 import { renderTechIcon } from "@/utils/helper";
-import { Chip, Container, Typography } from "@mui/material";
-import { Link, useLoaderData } from "react-router-dom";
+import {
+  Button,
+  Chip,
+  Container,
+  Divider,
+  Grid,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import { useLoaderData } from "react-router-dom";
 
 export async function loader({ params }: any): Promise<IProject> {
   const projectDetail = await getProjects(params.id);
@@ -23,7 +32,7 @@ export default function ProjectDetailView() {
       <Container className="project-detail-container__header">
         <BackLink />
       </Container>
-      <Container className="project-detail-container__content col">
+      {/* <Container className="project-detail-container__content col">
         <Typography variant="h1">{name}</Typography>
 
         {tags && <Tags tags={tags} />}
@@ -34,7 +43,28 @@ export default function ProjectDetailView() {
         {platforms && <AvailablePlatforms platforms={platforms} />}
         {techStack && <Stacks stacks={techStack} />}
         {screenshots && <ImagesDisplay images={screenshots} />}
-      </Container>
+      </Container> */}
+
+      <Grid container>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h3">{name}</Typography>
+
+          {platforms && <AvailablePlatforms platforms={platforms} />}
+
+          {tags && <Tags tags={tags} />}
+
+          <Container style={{ whiteSpace: "normal" }}>
+            <Typography variant="caption">{description}</Typography>
+          </Container>
+
+          <Divider />
+          <Stacks stacks={techStack} />
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <ImageCarousel images={screenshots} />
+        </Grid>
+      </Grid>
     </Container>
   );
 }
@@ -43,20 +73,34 @@ interface IAvailablePlatformsProps {
   platforms: IPlatform[];
 }
 function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
+  const onClickHandler = (url: string) => {
+    window.open(url, "_blank");
+  };
   return (
-    <Container className="available-wrapper row">
-      <Typography variant="h2">Available on</Typography>
-
-      <Container className="links-list">
-        {platforms.map(({ url, name, id }, idx) => {
-          return (
-            <Link to={url} key={idx}>
-              <RenderTechIcon tech={id} />
-              {name}
-            </Link>
-          );
-        })}
-      </Container>
+    <Container
+      className="available-wrapper"
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+      }}
+    >
+      {platforms.map(({ url, name, id }, idx) => {
+        return (
+          <Button
+            key={idx}
+            color="inherit"
+            fullWidth={false}
+            sx={{
+              width: "fit-content",
+            }}
+            onClick={() => onClickHandler(url)}
+            disabled={!url}
+          >
+            <RenderTechIcon tech={id} />
+            {name}
+          </Button>
+        );
+      })}
     </Container>
   );
 }
@@ -86,10 +130,13 @@ interface IStacksProps {
 export function Stacks({ stacks }: IStacksProps) {
   return (
     <Container className="stack-wrapper">
-      <Typography variant="h2">Tech</Typography>
       <Container className="stacks-list row">
         {stacks.map((stack, idx) => {
-          return <RenderTechIcon tech={stack} idx={idx} />;
+          return (
+            <Tooltip key={idx} title={stack}>
+              <RenderTechIcon tech={stack} />
+            </Tooltip>
+          );
         })}
       </Container>
     </Container>
@@ -127,7 +174,7 @@ function RenderTechIcon({
       height={32}
       width={32}
       style={{
-        filter: "invert(1)",
+        margin: "0 5px",
       }}
     />
   );
