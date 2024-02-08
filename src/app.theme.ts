@@ -13,6 +13,14 @@ export const appTheme = createTheme({
   },
   typography: {},
   components: {
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "grey",
+          margin: "10px 5px",
+        },
+      },
+    },
     MuiButton: {
       variants: [
         {
