@@ -3,13 +3,12 @@ import { projects } from "@/mocks/project.data.mock";
 import {
   Card,
   CardContent,
-  CardHeader,
   CardMedia,
   Container,
   Grid,
-  Paper,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectPage() {
   return (
@@ -21,6 +20,15 @@ export default function ProjectPage() {
 }
 
 function ProjectList() {
+  const navigation = useNavigate();
+
+  const onItemClick = (name: string) => {
+    if (name)
+      navigation(name, {
+        state: { from: "project" },
+      });
+  };
+
   return (
     <Grid
       container
@@ -51,6 +59,7 @@ function ProjectList() {
                 },
               }}
               elevation={3}
+              onClick={() => onItemClick(id)}
             >
               <CardMedia
                 sx={{
