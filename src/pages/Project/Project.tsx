@@ -1,63 +1,102 @@
+import BackLink from "@/components/BackLink";
 import { projects } from "@/mocks/project.data.mock";
-import { IPlatform, IProject } from "@/types/project";
-import { NavLink } from "react-router-dom";
-import "./Project.scss";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Container,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 
 export default function ProjectPage() {
   return (
-    <div className="project-wrapper">
-      <div className="project-wrapper__header">
-        <NavLink to="/" className="back-link">
-          {`< `}Home
-        </NavLink>
-      </div>
-
+    <Container className="project-wrapper">
+      <BackLink to="/" title="Home" />
       <ProjectList />
-    </div>
+    </Container>
   );
 }
 
 function ProjectList() {
   return (
-    <div className="project-list-wrapper force-center">
-      {projects.map(
-        ({
-          id,
-          name,
-          description,
-          startedAt,
-          endedAt,
-          tags,
-          screenshots,
-          roles,
-          platforms,
-          techStack,
-        }) => {
-          return (
-            <ProjectCardView
-              key={id}
-              id={id}
-              name={name}
-              description={description}
-              startedAt={startedAt?.toString()}
-              endedAt={endedAt?.toString()}
-              tags={tags}
-              screenshots={screenshots as string[]}
-              roles={roles}
-              platforms={platforms as IPlatform[]}
-              techStack={techStack}
-            />
-          );
-        }
-      )}
-    </div>
-  );
-}
+    <Grid
+      container
+      spacing={2}
+      sx={{
+        margin: "auto !important",
+      }}
+    >
+      {projects.map(({ id, name, screenshots, description }) => {
+        return (
+          <Grid
+            key={id}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            className="project-card"
+          >
+            <Card
+              sx={{
+                height: "100%",
+                ":hover": {
+                  cursor: "pointer",
+                  boxShadow: "0 0 10px 0 rgba(228, 225, 225, 0.2)",
+                  transform: "scale(1.05)",
+                  transition: "all 0.2s ease-in-out",
+                },
+              }}
+              elevation={3}
+            >
+              <CardMedia
+                sx={{
+                  height: 300,
+                }}
+              >
+                {screenshots && (
+                  <img
+                    src={screenshots[0]}
+                    alt={name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                )}
+              </CardMedia>
 
-function ProjectCardView({ id, name }: IProject) {
-  return (
-    <NavLink to={`${id}`} className="project-card">
-      <p>{name}</p>
-    </NavLink>
+              <CardContent>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  {name}
+                </Typography>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    maxLines: 3,
+                    display: "-webkit-box",
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: "vertical",
+                  }}
+                >
+                  {description}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        );
+      })}
+    </Grid>
   );
 }
