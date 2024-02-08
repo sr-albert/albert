@@ -67,6 +67,11 @@ textarea {
   font-family: StayWriter, monospace, Arial, Helvetica, sans-serif;
 }
 
+img {
+  user-select: none;
+  pointer-events: none;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
