@@ -28,7 +28,6 @@ export default function ProjectDetailView() {
     <Container
       className="project-detail-container"
       data-testid={`project-detail-${id}`}
-      disableGutters
     >
       <Container className="project-detail-container__header" disableGutters>
         <BackLink />
