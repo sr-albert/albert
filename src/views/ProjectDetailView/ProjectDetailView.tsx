@@ -37,16 +37,27 @@ export default function ProjectDetailView() {
         <Grid item xs={12} md={6}>
           <Typography variant="h3">{name}</Typography>
 
-          {platforms && <AvailablePlatforms platforms={platforms} />}
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              margin: "10px 0",
+            }}
+            disableGutters
+          >
+            {techStack && <Stacks stacks={techStack} />}
+            {platforms && <AvailablePlatforms platforms={platforms} />}
+          </Container>
 
           {tags && <Tags tags={tags} />}
 
-          <Container style={{ whiteSpace: "normal" }} disableGutters>
+          <Container
+            style={{ whiteSpace: "normal", margin: "10px 0px" }}
+            disableGutters
+          >
             <Typography variant="body1">{description}</Typography>
           </Container>
-
-          <Divider />
-          <Stacks stacks={techStack} />
         </Grid>
 
         {screenshots && (
@@ -70,24 +81,27 @@ function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
     <Container
       className="available-wrapper"
       sx={{
+        width: "fit-content",
         display: "flex",
         flexDirection: "row",
       }}
     >
       {platforms.map(({ url, name, id }, idx) => {
         return (
-          <Button
-            key={idx}
-            color="inherit"
-            fullWidth={false}
-            sx={{
-              width: "fit-content",
-            }}
-            onClick={() => onClickHandler(url)}
-            disabled={!url}
-          >
-            <RenderTechIcon tech={id} />
-          </Button>
+          <Tooltip title={`View on ${name}`}>
+            <Button
+              key={idx}
+              color="inherit"
+              fullWidth={false}
+              sx={{
+                width: "fit-content",
+              }}
+              onClick={() => onClickHandler(url)}
+              disabled={!url}
+            >
+              <RenderTechIcon tech={id} />
+            </Button>
+          </Tooltip>
         );
       })}
     </Container>
@@ -104,11 +118,22 @@ export function Tags({ tags }: ITagProps) {
       sx={{
         display: "flex",
         gap: 1,
+        "& > :not(style)": {
+          color: "inherit",
+        },
       }}
       disableGutters
     >
       {tags.map((tag, idx) => {
-        return <Chip className="tag" key={idx} label={tag} />;
+        return (
+          <Chip
+            className="tag"
+            key={idx}
+            label={tag}
+            variant="outlined"
+            size="small"
+          />
+        );
       })}
     </Container>
   );
@@ -119,7 +144,15 @@ interface IStacksProps {
 }
 export function Stacks({ stacks }: IStacksProps) {
   return (
-    <Container className="stack-wrapper" disableGutters>
+    <Container
+      className="stack-wrapper"
+      disableGutters
+      sx={{
+        display: "flex",
+        gap: 1,
+        alignItems: "center",
+      }}
+    >
       {stacks.map((stack, idx) => {
         return (
           <Tooltip key={idx} title={stack}>
@@ -127,8 +160,8 @@ export function Stacks({ stacks }: IStacksProps) {
               key={idx || "default key"}
               alt={stack}
               src={renderTechIcon(stack)}
-              height={32}
-              width={32}
+              height={24}
+              width={24}
               style={{
                 margin: "0 5px",
                 pointerEvents: "inherit",

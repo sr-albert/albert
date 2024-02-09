@@ -31,24 +31,10 @@ function ProjectList() {
   };
 
   return (
-    <Grid
-      container
-      spacing={3}
-      sx={{
-        margin: "auto !important",
-      }}
-    >
+    <Grid container spacing={2}>
       {projects.map(({ id, name, screenshots, description }) => {
         return (
-          <Grid
-            key={id}
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            lg={3}
-            className="project-card"
-          >
+          <Grid key={id} item xs={12} md={6} lg={3} className="project-card">
             <Card
               sx={{
                 height: "100%",
