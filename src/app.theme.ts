@@ -45,7 +45,6 @@ export const appTheme = createTheme({
             margin: "5px",
             minHeight: "40px",
             color: "dark-color",
-
             "&:hover": {
               transform: "scale(1.05)",
               color: "main-color",
