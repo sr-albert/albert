@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProjectPage() {
   return (
-    <Container className="project-wrapper">
+    <Container className="project-wrapper" disableGutters>
       <BackLink to="/" title="Home" />
       <ProjectList />
     </Container>
@@ -33,7 +33,7 @@ function ProjectList() {
   return (
     <Grid
       container
-      spacing={2}
+      spacing={3}
       sx={{
         margin: "auto !important",
       }}

@@ -129,7 +129,7 @@ export const projects = [
       {
         id: "web",
         name: "Website",
-        url: "https://dizim.ai/",
+        url: "https://houze.group/houze-agent-en/",
       },
     ],
     techStack: ["Flutter", "Dart"],
@@ -160,12 +160,11 @@ export const projects = [
     startedAt: null,
     endedAt: null,
     status: "live",
-    tags: ["React JS", "NextJS", "TypeScript"],
+    tags: ["React", "NextJS", "TypeScript"],
     urls: [],
     platforms: [
       {
         id: "web",
-
         name: "Website",
         url: "https://albert-test-r.netlify.app/",
       },

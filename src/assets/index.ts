@@ -15,3 +15,4 @@ export { default as IcFirebaseSVG } from "./icons/ic-firebase.svg";
 export { default as IcAppstoreSVG } from "./icons/ic-appstore.svg";
 export { default as IcGooglePlaySVG } from "./icons/ic-gg-store.svg";
 export { default as IcLeetcodeSVG } from "./icons/ic-leetcode.svg";
+export { default as IcWebSVG } from "./icons/ic-website.svg";
