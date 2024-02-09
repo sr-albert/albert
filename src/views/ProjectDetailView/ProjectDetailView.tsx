@@ -1,8 +1,18 @@
+import BackLink from "@/components/BackLink";
+import { ImageCarousel } from "@/components/Carousel";
 import { getProjects } from "@/services/project.service";
 import { IPlatform, IProject } from "@/types/project";
 import { renderTechIcon } from "@/utils/helper";
-import { Link, useLoaderData } from "react-router-dom";
-import "./ProjectDetailView.scss";
+import {
+  Button,
+  Chip,
+  Container,
+  Divider,
+  Grid,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import { useLoaderData } from "react-router-dom";
 
 export async function loader({ params }: any): Promise<IProject> {
   const projectDetail = await getProjects(params.id);
@@ -15,26 +25,48 @@ export default function ProjectDetailView() {
     loaderData as IProject;
 
   return (
-    <div
+    <Container
       className="project-detail-container"
       data-testid={`project-detail-${id}`}
     >
-      <div className="project-detail-container__header">
-        <Link to=".." relative="path" className="back-link">
-          {`< Back`}
-        </Link>
-      </div>
-      <div className="project-detail-container__content col">
-        <h1>{name}</h1>
-        {tags && <Tags tags={tags} />}
-        <div style={{ whiteSpace: "normal" }}>
-          <span>{description}</span>
-        </div>
-        {platforms && <AvailablePlatforms platforms={platforms} />}
-        {techStack && <Stacks stacks={techStack} />}
-        {screenshots && <ImagesDisplay images={screenshots} />}
-      </div>
-    </div>
+      <Container className="project-detail-container__header" disableGutters>
+        <BackLink />
+      </Container>
+
+      <Grid container>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h3">{name}</Typography>
+
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              margin: "10px 0",
+            }}
+            disableGutters
+          >
+            {techStack && <Stacks stacks={techStack} />}
+            {platforms && <AvailablePlatforms platforms={platforms} />}
+          </Container>
+
+          {tags && <Tags tags={tags} />}
+
+          <Container
+            style={{ whiteSpace: "normal", margin: "10px 0px" }}
+            disableGutters
+          >
+            <Typography variant="body1">{description}</Typography>
+          </Container>
+        </Grid>
+
+        {screenshots && (
+          <Grid item xs={12} md={6}>
+            <ImageCarousel images={screenshots} />
+          </Grid>
+        )}
+      </Grid>
+    </Container>
   );
 }
 
@@ -42,21 +74,37 @@ interface IAvailablePlatformsProps {
   platforms: IPlatform[];
 }
 function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
+  const onClickHandler = (url: string) => {
+    window.open(url, "_blank");
+  };
   return (
-    <div className="available-wrapper row">
-      <h2>Available on</h2>
-
-      <div className="links-list">
-        {platforms.map(({ url, name, id }, idx) => {
-          return (
-            <Link to={url} key={idx}>
+    <Container
+      className="available-wrapper"
+      sx={{
+        width: "fit-content",
+        display: "flex",
+        flexDirection: "row",
+      }}
+    >
+      {platforms.map(({ url, name, id }, idx) => {
+        return (
+          <Tooltip title={`View on ${name}`}>
+            <Button
+              key={idx}
+              color="inherit"
+              fullWidth={false}
+              sx={{
+                width: "fit-content",
+              }}
+              onClick={() => onClickHandler(url)}
+              disabled={!url}
+            >
               <RenderTechIcon tech={id} />
-              {name}
-            </Link>
-          );
-        })}
-      </div>
-    </div>
+            </Button>
+          </Tooltip>
+        );
+      })}
+    </Container>
   );
 }
 
@@ -65,15 +113,29 @@ interface ITagProps {
 }
 export function Tags({ tags }: ITagProps) {
   return (
-    <div className="tag-wrapper row">
+    <Container
+      className="tag-wrapper row"
+      sx={{
+        display: "flex",
+        gap: 1,
+        "& > :not(style)": {
+          color: "inherit",
+        },
+      }}
+      disableGutters
+    >
       {tags.map((tag, idx) => {
         return (
-          <p className="tag" key={idx}>
-            {tag}
-          </p>
+          <Chip
+            className="tag"
+            key={idx}
+            label={tag}
+            variant="outlined"
+            size="small"
+          />
         );
       })}
-    </div>
+    </Container>
   );
 }
 
@@ -82,14 +144,33 @@ interface IStacksProps {
 }
 export function Stacks({ stacks }: IStacksProps) {
   return (
-    <div className="stack-wrapper">
-      <h2>Tech</h2>
-      <div className="stacks-list row">
-        {stacks.map((stack, idx) => {
-          return <RenderTechIcon tech={stack} idx={idx} />;
-        })}
-      </div>
-    </div>
+    <Container
+      className="stack-wrapper"
+      disableGutters
+      sx={{
+        display: "flex",
+        gap: 1,
+        alignItems: "center",
+      }}
+    >
+      {stacks.map((stack, idx) => {
+        return (
+          <Tooltip key={idx} title={stack}>
+            <img
+              key={idx || "default key"}
+              alt={stack}
+              src={renderTechIcon(stack)}
+              height={24}
+              width={24}
+              style={{
+                margin: "0 5px",
+                pointerEvents: "inherit",
+              }}
+            />
+          </Tooltip>
+        );
+      })}
+    </Container>
   );
 }
 
@@ -98,14 +179,14 @@ interface IImagesDisplayProps {
 }
 function ImagesDisplay({ images }: IImagesDisplayProps) {
   return (
-    <div className="gallery-wrapper col">
-      <h2> Gallery </h2>
-      <div className="images-list">
+    <Container className="gallery-wrapper col">
+      <Typography variant="h2"> Gallery </Typography>
+      <Container className="images-list">
         {images.map((image, idx) => {
           return <img key={idx} src={image} alt="project-image" />;
         })}
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
 
@@ -124,7 +205,7 @@ function RenderTechIcon({
       height={32}
       width={32}
       style={{
-        filter: "invert(1)",
+        margin: "0 5px",
       }}
     />
   );
