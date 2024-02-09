@@ -53,7 +53,7 @@ const mockImages = [
   "https://picsum.photos/200/300?random=15",
 ];
 
-const SlideActionButton = styled(IconButton)<ButtonProps>(({ theme }) => ({
+const SlideActionButton = styled(IconButton)<ButtonProps>(() => ({
   color: "white",
 
   //   ":hover": {
