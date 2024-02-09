@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import BackLink from "@/components/BackLink";
 import { ImageCarousel } from "@/components/Carousel";
 import { getProjects } from "@/services/project.service";
