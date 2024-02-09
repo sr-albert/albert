@@ -28,22 +28,11 @@ export default function ProjectDetailView() {
     <Container
       className="project-detail-container"
       data-testid={`project-detail-${id}`}
+      disableGutters
     >
-      <Container className="project-detail-container__header">
+      <Container className="project-detail-container__header" disableGutters>
         <BackLink />
       </Container>
-      {/* <Container className="project-detail-container__content col">
-        <Typography variant="h1">{name}</Typography>
-
-        {tags && <Tags tags={tags} />}
-        <Container style={{ whiteSpace: "normal" }}>
-          <Typography variant="caption">{description}</Typography>
-        </Container>
-
-        {platforms && <AvailablePlatforms platforms={platforms} />}
-        {techStack && <Stacks stacks={techStack} />}
-        {screenshots && <ImagesDisplay images={screenshots} />}
-      </Container> */}
 
       <Grid container>
         <Grid item xs={12} md={6}>
@@ -53,17 +42,19 @@ export default function ProjectDetailView() {
 
           {tags && <Tags tags={tags} />}
 
-          <Container style={{ whiteSpace: "normal" }}>
-            <Typography variant="caption">{description}</Typography>
+          <Container style={{ whiteSpace: "normal" }} disableGutters>
+            <Typography variant="body1">{description}</Typography>
           </Container>
 
           <Divider />
           <Stacks stacks={techStack} />
         </Grid>
 
-        <Grid item xs={12} md={6}>
-          <ImageCarousel images={screenshots} />
-        </Grid>
+        {screenshots && (
+          <Grid item xs={12} md={6}>
+            <ImageCarousel images={screenshots} />
+          </Grid>
+        )}
       </Grid>
     </Container>
   );
@@ -97,7 +88,6 @@ function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
             disabled={!url}
           >
             <RenderTechIcon tech={id} />
-            {name}
           </Button>
         );
       })}
@@ -116,6 +106,7 @@ export function Tags({ tags }: ITagProps) {
         display: "flex",
         gap: 1,
       }}
+      disableGutters
     >
       {tags.map((tag, idx) => {
         return <Chip className="tag" key={idx} label={tag} />;
@@ -129,16 +120,24 @@ interface IStacksProps {
 }
 export function Stacks({ stacks }: IStacksProps) {
   return (
-    <Container className="stack-wrapper">
-      <Container className="stacks-list row">
-        {stacks.map((stack, idx) => {
-          return (
-            <Tooltip key={idx} title={stack}>
-              <RenderTechIcon tech={stack} />
-            </Tooltip>
-          );
-        })}
-      </Container>
+    <Container className="stack-wrapper" disableGutters>
+      {stacks.map((stack, idx) => {
+        return (
+          <Tooltip key={idx} title={stack}>
+            <img
+              key={idx || "default key"}
+              alt={stack}
+              src={renderTechIcon(stack)}
+              height={32}
+              width={32}
+              style={{
+                margin: "0 5px",
+                pointerEvents: "inherit",
+              }}
+            />
+          </Tooltip>
+        );
+      })}
     </Container>
   );
 }

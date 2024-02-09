@@ -13,6 +13,7 @@ import {
   IcPythonSVG,
   IcReactSVG,
   IcTypescriptSVG,
+  IcWebSVG,
 } from "@/assets";
 import { format } from "date-fns";
 export const getCurrentDateTime = (): string => {
@@ -47,6 +48,8 @@ export const renderTechIcon = (tech: string): string => {
       return IcAppstoreSVG;
     case "google-play":
       return IcGooglePlaySVG;
+    case "web":
+      return IcWebSVG;
     default:
       return DEFAULTICON;
   }
