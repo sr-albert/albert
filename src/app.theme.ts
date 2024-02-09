@@ -44,7 +44,7 @@ export const appTheme = createTheme({
             transition: "all 0.2s ease-in-out",
             margin: "5px",
             minHeight: "40px",
-            color: "dark-color",
+            color: "dark-color", 
             "&:hover": {
               transform: "scale(1.05)",
               color: "main-color",
