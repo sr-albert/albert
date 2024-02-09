@@ -7,7 +7,6 @@ import {
   Button,
   Chip,
   Container,
-  Divider,
   Grid,
   Tooltip,
   Typography,
@@ -170,22 +169,6 @@ export function Stacks({ stacks }: IStacksProps) {
           </Tooltip>
         );
       })}
-    </Container>
-  );
-}
-
-interface IImagesDisplayProps {
-  images: string[];
-}
-function ImagesDisplay({ images }: IImagesDisplayProps) {
-  return (
-    <Container className="gallery-wrapper col">
-      <Typography variant="h2"> Gallery </Typography>
-      <Container className="images-list">
-        {images.map((image, idx) => {
-          return <img key={idx} src={image} alt="project-image" />;
-        })}
-      </Container>
     </Container>
   );
 }
