@@ -1,4 +1,4 @@
-import { ArrowBackIosNew } from "@mui/icons-material"; 
+import { ArrowBackIosNew } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 

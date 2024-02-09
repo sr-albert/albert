@@ -11,6 +11,9 @@ declare module "@mui/material/Button" {
 export const appTheme = createTheme({
   palette: {
     mode: "dark",
+    primary: {
+      main: "#B88E2F",
+    },
   },
   typography: {},
   components: {
@@ -23,6 +26,13 @@ export const appTheme = createTheme({
       },
     },
     MuiButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            border: "1px solid transparent",
+          },
+        },
+      },
       variants: [
         {
           props: { variant: "abtn", color: "primary" },
@@ -35,8 +45,6 @@ export const appTheme = createTheme({
             margin: "5px",
             minHeight: "40px",
             color: "dark-color",
-            border: "1px solid transparent",
-
             "&:hover": {
               transform: "scale(1.05)",
               color: "main-color",
