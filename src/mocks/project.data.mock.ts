@@ -189,10 +189,9 @@ export const projects = [
       {
         id: "web",
         name: "Website",
-        url: "https://dazzling-pony-155940.netlify.app/",
+        url: "https://albert-scentronix-fe.netlify.app/",
       },
     ],
-
     roles: ["Pet project"],
     techStack: ["React", "TypeScript", "NextJS", "Firebase"],
     kind: "pet-project",
