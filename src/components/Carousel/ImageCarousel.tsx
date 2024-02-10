@@ -1,18 +1,10 @@
 import { ArrowBackIosNew } from "@mui/icons-material";
-import {
-  Box,
-  ButtonProps,
-  Grid,
-  IconButton,
-  List,
-  ListItem,
-} from "@mui/material";
+import { Box, ButtonProps, Grid, IconButton, ListItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React from "react";
 const styles = {
   root: {
     width: "100%",
-
     backgrourdColor: "red",
     position: "relative",
   },
@@ -35,35 +27,24 @@ const styles = {
   },
 };
 
-const mockImages = [
-  "https://picsum.photos/200/300?random=1",
-  "https://picsum.photos/200/300?random=2",
-  "https://picsum.photos/200/300?random=3",
-  "https://picsum.photos/200/300?random=4",
-  "https://picsum.photos/200/300?random=5",
-  "https://picsum.photos/200/300?random=6",
-  "https://picsum.photos/200/300?random=7",
-  "https://picsum.photos/200/300?random=8",
-  "https://picsum.photos/200/300?random=9",
-  "https://picsum.photos/200/300?random=10",
-  "https://picsum.photos/200/300?random=11",
-  "https://picsum.photos/200/300?random=12",
-  "https://picsum.photos/200/300?random=13",
-  "https://picsum.photos/200/300?random=14",
-  "https://picsum.photos/200/300?random=15",
-];
-
 const SlideActionButton = styled(IconButton)<ButtonProps>(() => ({
   color: "white",
-
-  //   ":hover": {
-  //     color: theme.palette.ttcues.main,
-  //   },
+  top: "50%",
+  transform: "translateY(-50%)",
+  width: "fit-content",
+  backgroundColor: "rgba(0, 0, 0, 0.3)",
+  "&:hover": {
+    border: "1px solid #B88E2F",
+    backgroundColor: "rgba(0, 0, 0, 0.827)",
+  },
+  "&:disabled": {
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
+  },
 }));
 interface Props {
   images: string[];
 }
-export default function ImageCarousel({ images = mockImages }: Props) {
+export default function ImageCarousel({ images }: Props) {
   const [selectedSlide, setSelectedSlide] = React.useState(0);
 
   const handleSelectSlide = (index: number) => {
@@ -80,11 +61,10 @@ export default function ImageCarousel({ images = mockImages }: Props) {
 
   return (
     <Grid id="carousel" container height={500} width="auto">
-      <Grid item xs={2}>
-        <List
+      <Grid item xs={12} md={2}>
+        <Box
           id="product-image-list"
           data-testid="product-image-list"
-          disablePadding
           sx={{
             overflowY: "auto",
             maxHeight: "500px",
@@ -125,10 +105,10 @@ export default function ImageCarousel({ images = mockImages }: Props) {
               </ListItem>
             );
           })}
-        </List>
+        </Box>
       </Grid>
 
-      <Grid item xs={10}>
+      <Grid item xs={12} md={10}>
         <Box sx={styles.selectedSlide} id="product-image">
           <img
             alt="Selected Image"
@@ -149,11 +129,7 @@ export default function ImageCarousel({ images = mockImages }: Props) {
             name="btn-previous-pic"
             sx={{
               position: "absolute",
-              top: "50%",
               left: "10px",
-              transform: "translateY(-50%)",
-              width: "fit-content",
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
             }}
             disabled={selectedSlide === 0}
             onClick={() => handleSelectSlide(selectedSlide - 1)}
@@ -168,11 +144,7 @@ export default function ImageCarousel({ images = mockImages }: Props) {
             aria-label="Next Picture"
             sx={{
               position: "absolute",
-              top: "50%",
               right: "10px",
-              transform: "translateY(-50%)",
-              width: "fit-content",
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
             }}
             disabled={selectedSlide === images.length - 1}
             onClick={() => handleSelectSlide(selectedSlide + 1)}
