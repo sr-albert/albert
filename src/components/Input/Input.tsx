@@ -5,10 +5,11 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: FieldError;
   variant?: "primary" | "secondary";
+  maxWidth?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ label, name, error, ...other }: InputProps, ref) => (
+  ({ label, name, error, style, ...other }: InputProps, ref) => (
     <div className="input-wrapper">
       {label && (
         <label
@@ -18,16 +19,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {label}
         </label>
       )}
-      <input
-        ref={ref}
-        name={name}
-        {...other}
-        style={{
-          width: "100%",
-          border: "1px solid #ffffff",
-          borderRadius: "4px",
-        }}
-      />
+      <input ref={ref} name={name} {...other} style={{ ...style }} />
 
       {error && (
         <p

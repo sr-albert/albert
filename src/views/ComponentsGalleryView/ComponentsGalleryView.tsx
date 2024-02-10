@@ -1,11 +1,10 @@
-import BackLink from "@/components/BackLink";
-import { Container } from "@mui/material";
+import BackLinkLayout from "@/layouts/backlink.layout";
+import { Typography } from "@mui/material";
 
 export default function ComponentsGalleryView() {
   return (
-    <Container className="gallery-wrapper" disableGutters>
-      <BackLink to="/" title="Home" />
-      GalleryList
-    </Container>
+    <BackLinkLayout>
+      <Typography variant="h1">Components Gallery</Typography>
+    </BackLinkLayout>
   );
 }
