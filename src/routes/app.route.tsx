@@ -1,6 +1,7 @@
 import { App } from "@/app";
 import { Home, Project } from "@/pages";
 import { ErrorView } from "@/views";
+import ComponentsGalleryView from "@/views/ComponentsGalleryView";
 import NotFound from "@/views/NotFound/NotFound";
 import ProjectDetailView, {
   projectDetailLoader,
@@ -16,16 +17,6 @@ const appRoute = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-      // {
-      //   path: "contact",
-      //   element: <Contact />,
-      //   errorElement: <ErrorView />,
-      // },
-      {
-        path: "mine",
-        element: <Project />,
-        errorElement: <ErrorView />,
-      },
       {
         path: "works",
         element: <Project />,
@@ -35,7 +26,10 @@ const appRoute = createBrowserRouter([
         path: "works/:id",
         element: <ProjectDetailView />,
         loader: projectDetailLoader,
-        errorElement: <NotFound />,
+      },
+      {
+        path: "components",
+        element: <ComponentsGalleryView />,
       },
     ],
   },
