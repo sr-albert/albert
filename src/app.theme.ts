@@ -40,7 +40,7 @@ export const appTheme = createTheme({
             color: "dark-color",
             "&:hover": {
               transform: "scale(1.05)",
-              color: "main-color",
+              color: "primary.main",
             },
           },
         },
@@ -58,7 +58,7 @@ export const appTheme = createTheme({
             border: "1px solid transparent",
             "&:hover": {
               transform: "scale(1.05)",
-              color: "main-color",
+              color: "primary.main",
             },
           },
         },
