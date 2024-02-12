@@ -8,7 +8,7 @@ export default function BackLinkLayout({ children }: Props) {
   return (
     <Container disableGutters>
       <BackLink to="/" title="Home" />
-      <Container disableGutters>{children}</Container>
+      <Container>{children}</Container>
     </Container>
   );
 }

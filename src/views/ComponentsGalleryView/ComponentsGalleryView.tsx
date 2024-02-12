@@ -5,6 +5,7 @@ import {
   Button,
   Container,
   Grid,
+  Paper,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -64,16 +65,30 @@ export default function ComponentsGalleryView() {
           open={selectedComponent?.length >= 0}
           className="component-playground"
         >
-          <Grid container className="header">
-            <Grid item xs={11} display="flex" justifyContent="space-between">
-              <Typography variant="h2">{selectedComponent}</Typography>
-              <Tooltip title="Close">
-                <Button onClick={onClose}>
-                  <Close />
-                </Button>
-              </Tooltip>
+          <Paper
+            sx={{
+              width: {
+                xs: "100%",
+                md: "80%",
+              },
+            }}
+          >
+            <Grid container className="header">
+              <Grid item xs={12} display="flex" justifyContent="space-between">
+                <Typography variant="h2">{selectedComponent}</Typography>
+                <Tooltip title="Close">
+                  <Button
+                    onClick={onClose}
+                    sx={{
+                      width: "fit-content",
+                    }}
+                  >
+                    <Close />
+                  </Button>
+                </Tooltip>
+              </Grid>
             </Grid>
-          </Grid>
+          </Paper>
         </Backdrop>
       )}
     </BackLinkLayout>
