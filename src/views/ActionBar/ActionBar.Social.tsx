@@ -30,9 +30,9 @@ const socialMenu: ItemProps[] = [
 export default function ActionBarSocial() {
   return (
     <div className="social-group-container">
-      {socialMenu.map(({ href, isSocial }: ItemProps) => {
+      {socialMenu.map(({ href, isSocial, id }: ItemProps) => {
         if (!isSocial) return null;
-        return <ActionBarItem path={href} isSocial={true} />;
+        return <ActionBarItem key={id} path={href} isSocial={true} />;
       })}
     </div>
   );

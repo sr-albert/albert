@@ -1,4 +1,5 @@
 import { IcComponentsSVG, IcLeetcodeSVG } from "@/assets";
+import { Tooltip } from "@mui/material";
 import {
   Code,
   Smile as DefaultIcon,
@@ -19,7 +20,6 @@ export default function ActionBarItem({ path, isSocial }: Props) {
 
   const renderIcon = () => {
     if (isSocial) {
-      // return element based on path include(value)
       if (path?.includes("linkedin")) return <Linkedin />;
       if (path?.includes("github")) return <GitHub />;
       if (path?.includes("leetcode"))
@@ -52,14 +52,24 @@ export default function ActionBarItem({ path, isSocial }: Props) {
     isPending?: boolean;
   }) => {
     let className = "action-bar-item";
-
     if (isHighlight) className += " highlight";
-
     if (isSocial) className += " social";
-
     className += isPending ? " pending" : isActive ? " active" : "";
-
     return className;
+  };
+
+  const handleTooltipTitle = (): string => {
+    if (path?.toLocaleLowerCase() === "works") {
+      return "My Works";
+    }
+
+    return path || "";
+  };
+
+  const handlePath = (): string => {
+    if (isSocial) return path || "#";
+    if (path === "") return "#";
+    return "/" + path;
   };
 
   if (!path) return;
@@ -68,12 +78,14 @@ export default function ActionBarItem({ path, isSocial }: Props) {
     <NavLink
       id={`action-item-${path}`}
       aria-label={`router to ${path}`}
-      to={!isSocial ? `/${path}` : path}
+      to={handlePath()}
       target={isSocial ? "_blank" : "_self"}
       className={returnClassName}
       draggable={false}
     >
-      {renderIcon()}
+      <Tooltip title={handleTooltipTitle()} placement="right">
+        {renderIcon()}
+      </Tooltip>
     </NavLink>
   );
 }

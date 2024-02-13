@@ -6,12 +6,18 @@ import Item from "./ActionBarItem";
 export default function ActionBar() {
   const memoizedRoutes = useMemo(() => {
     const routes = appRoute.routes;
-    const appRoutes = routes[0].children;
+    const parent = routes[0];
+    const appRoutes = parent.children;
+
+    console.log({
+      routes,
+      parent,
+      appRoutes,
+    });
 
     return appRoutes?.filter((r) => {
       if (!r.path) return false;
-
-      return !r.path.includes("/:");
+      return [!r.path.includes("/:"), parent];
     });
   }, []);
 

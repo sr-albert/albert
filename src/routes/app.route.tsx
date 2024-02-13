@@ -1,7 +1,6 @@
 import { App } from "@/app";
 import { Home, Project } from "@/pages";
 import { ErrorView } from "@/views";
-import ComponentsGalleryView from "@/views/ComponentsGalleryView";
 import NotFound from "@/views/NotFound/NotFound";
 import ProjectDetailView, {
   projectDetailLoader,
@@ -12,6 +11,7 @@ const appRoute = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorView />,
     children: [
       {
         index: true,
@@ -27,10 +27,10 @@ const appRoute = createBrowserRouter([
         element: <ProjectDetailView />,
         loader: projectDetailLoader,
       },
-      {
-        path: "components",
-        element: <ComponentsGalleryView />,
-      },
+      // {
+      //   path: "components",
+      //   element: <ComponentsGalleryView />,
+      // },
     ],
   },
   {
