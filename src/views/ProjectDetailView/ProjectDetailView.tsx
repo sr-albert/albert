@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import BackLink from "@/components/BackLink";
 import { ImageCarousel } from "@/components/Carousel";
+import BackLinkLayout from "@/layouts/backlink.layout";
 import { getProjects } from "@/services/project.service";
 import { IPlatform, IProject } from "@/types/project";
 import { renderTechIcon } from "@/utils/helper";
@@ -26,14 +26,10 @@ export default function ProjectDetailView() {
     loaderData as IProject;
 
   return (
-    <Container
+    <BackLinkLayout
       className="project-detail-container"
       data-testid={`project-detail-${id}`}
     >
-      <Container className="project-detail-container__header" disableGutters>
-        <BackLink />
-      </Container>
-
       <Grid container>
         <Grid item xs={12} md={6}>
           <Typography variant="h3">{name}</Typography>
@@ -67,7 +63,7 @@ export default function ProjectDetailView() {
           </Grid>
         )}
       </Grid>
-    </Container>
+    </BackLinkLayout>
   );
 }
 
