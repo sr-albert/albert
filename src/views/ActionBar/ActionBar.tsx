@@ -1,72 +1,35 @@
+import appRoute from "@/routes/app.route";
+import { useMemo } from "react";
 import "./ActionBar.scss";
 import Item from "./ActionBarItem";
-import { ItemProps } from "./item.type";
-
-// Create a list of dummy data to render
-export const mockActionBar: ItemProps[] = [
-  {
-    id: "home",
-    name: "Home",
-    href: "/",
-    description: "Home page",
-  },
-  // {
-  //   id: "contact",
-  //   name: "Contact",
-  //   href: "/contact",
-  //   description: "Contact page",
-  // },
-  {
-    id: "works",
-    name: "Works",
-    href: "/works",
-    description: "Works page",
-  },
-  {
-    id: "leetcode",
-    name: "Leetcode",
-    href: "https://leetcode.com/sr-albert/",
-    description: "Leetcode profile",
-    isSocial: true,
-  },
-  {
-    id: "linkedin",
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/tam-nguyen-6a1576183/",
-    description: "Linked profile",
-    isSocial: true,
-  },
-  {
-    id: "github",
-    name: "Github",
-    href: "https://github.com/sr-albert",
-    description: "GitHub profile",
-    isSocial: true,
-  },
-];
 
 export default function ActionBar() {
-  const renderItems = () =>
-    mockActionBar.map(
-      ({ id, name, href, description, isSocial }: ItemProps) => {
-        if (isSocial) return null;
+  const memoizedRoutes = useMemo(() => {
+    const routes = appRoute.routes;
+    const root = routes[0];
 
-        return (
-          <Item
-            key={id}
-            id={id}
-            name={name}
-            href={href}
-            description={description}
-            isSocial={isSocial}
-          />
-        );
-      }
-    );
+    // const parent = {
+    //   path: root.path,
+    //   index: root.index,
+    //   id: root.id,
+    // };
+
+    const appRoutes = root.children;
+
+    const child = appRoutes?.filter((r) => {
+      if (!r.path) return false;
+      return !r.path.includes("/:"); // children paths without dynamic params
+    });
+
+    return child;
+  }, []);
 
   return (
     <div id="action-bar" className="horizontal">
-      {renderItems()}
+      {/* {renderItems()} */}
+
+      {memoizedRoutes &&
+        memoizedRoutes.map(({ path, id }) => <Item key={id} path={path} />)}
     </div>
   );
 }

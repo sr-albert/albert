@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import BackLink from "@/components/BackLink";
 import { ImageCarousel } from "@/components/Carousel";
+import BackLinkLayout from "@/layouts/backlink.layout";
 import { getProjects } from "@/services/project.service";
 import { IPlatform, IProject } from "@/types/project";
 import { renderTechIcon } from "@/utils/helper";
@@ -26,16 +26,19 @@ export default function ProjectDetailView() {
     loaderData as IProject;
 
   return (
-    <Container
+    <BackLinkLayout
       className="project-detail-container"
       data-testid={`project-detail-${id}`}
     >
-      <Container className="project-detail-container__header" disableGutters>
-        <BackLink />
-      </Container>
-
-      <Grid container>
-        <Grid item xs={12} md={6}>
+      <Grid
+        container
+        spacing={3}
+        direction={{
+          mobileS: "column-reverse",
+          md: "row",
+        }}
+      >
+        <Grid item mobileS={12} xs={6}>
           <Typography variant="h3">{name}</Typography>
 
           <Container
@@ -62,12 +65,12 @@ export default function ProjectDetailView() {
         </Grid>
 
         {screenshots && (
-          <Grid item xs={12} md={6}>
+          <Grid item mobileS={12} xs={6}>
             <ImageCarousel images={screenshots} />
           </Grid>
         )}
       </Grid>
-    </Container>
+    </BackLinkLayout>
   );
 }
 
@@ -89,7 +92,7 @@ function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
     >
       {platforms.map(({ url, name, id }, idx) => {
         return (
-          <Tooltip title={`View on ${name}`}>
+          <Tooltip title={`View on ${name}`} key={id}>
             <Button
               key={idx}
               color="inherit"

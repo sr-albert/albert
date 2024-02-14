@@ -1,3 +1,5 @@
+import { IcComponentsSVG, IcLeetcodeSVG } from "@/assets";
+import { Tooltip } from "@mui/material";
 import {
   Code,
   Smile as DefaultIcon,
@@ -7,32 +9,35 @@ import {
   MessageSquare,
 } from "react-feather";
 import { NavLink, useMatch } from "react-router-dom";
-import { ItemProps } from "./item.type";
-import { IcLeetcodeSVG } from "@/assets";
 
-export default function ActionBarItem({
-  id,
-  href,
-  description,
-  isSocial,
-}: ItemProps) {
+interface Props {
+  path: string | undefined;
+  isSocial?: boolean;
+}
+export default function ActionBarItem({ path, isSocial }: Props) {
   const contactPathMatched = useMatch("/contact");
   const isHighlight = contactPathMatched && isSocial;
+
   const renderIcon = () => {
-    switch (id) {
+    if (isSocial) {
+      if (path?.includes("linkedin")) return <Linkedin />;
+      if (path?.includes("github")) return <GitHub />;
+      if (path?.includes("leetcode"))
+        return (
+          <img alt="icon leetcode" width={24} height={24} src={IcLeetcodeSVG} />
+        );
+    }
+
+    switch (path) {
       case "home":
         return <HomeIcon />;
       case "contact":
         return <MessageSquare />;
-      case "linkedin":
-        return <Linkedin />;
-      case "github":
-        return <GitHub />;
       case "works":
         return <Code />;
-      case "leetcode":
+      case "components":
         return (
-          <img alt="icon leetcode" width={24} height={24} src={IcLeetcodeSVG} />
+          <img alt="Components" width={24} height={24} src={IcComponentsSVG} />
         );
       default:
         return <DefaultIcon />;
@@ -47,26 +52,38 @@ export default function ActionBarItem({
     isPending?: boolean;
   }) => {
     let className = "action-bar-item";
-
     if (isHighlight) className += " highlight";
-
     if (isSocial) className += " social";
-
     className += isPending ? " pending" : isActive ? " active" : "";
-
     return className;
+  };
+
+  const handleTooltipTitle = (): string => {
+    if (path?.toLocaleLowerCase() === "works") {
+      return "My Works";
+    }
+
+    return path || "";
+  };
+
+  const handlePath = (): string => {
+    if (isSocial) return path || "#";
+    if (path === "") return "#";
+    return "/" + path;
   };
 
   return (
     <NavLink
-      id={`action-item-${id}`}
-      aria-label={description}
-      to={href}
+      id={`action-item-${path}`}
+      aria-label={`router to ${path}`}
+      to={handlePath()}
       target={isSocial ? "_blank" : "_self"}
       className={returnClassName}
       draggable={false}
     >
-      {renderIcon()}
+      <Tooltip title={handleTooltipTitle()} placement="right">
+        {renderIcon()}
+      </Tooltip>
     </NavLink>
   );
 }

@@ -1,28 +1,21 @@
 import { ArrowBackIosNew } from "@mui/icons-material";
-import {
-  Box,
-  ButtonProps,
-  Grid,
-  IconButton,
-  List,
-  ListItem,
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box, Grid, IconButton } from "@mui/material";
 import React from "react";
 const styles = {
   root: {
     width: "100%",
-
-    backgrourdColor: "red",
     position: "relative",
+    margin: "auto",
   },
-
   sideStyle: {
+    justifyContent: "center",
+    alignItems: "center",
+    display: "flex",
+    padding: "5px 0px",
+    cursor: "pointer",
     ">img": {
       borderRadius: "12px",
-      cursor: "pointer",
       border: "2px solid transparent",
-
       ":hover": {
         border: "2px solid #B88E2F",
       },
@@ -32,39 +25,53 @@ const styles = {
     width: "100%",
     height: "500px",
     position: "relative",
+    "@media (max-width: 600px)": {
+      height: "auto",
+    },
+  },
+  btnSlideAction: {
+    position: "absolute",
+    color: "white",
+    top: "50%",
+    transform: "translateY(-50%)",
+    width: "fit-content",
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    "&:hover": {
+      cursor: "pointer",
+      backgroundColor: "rgba(0, 0, 0, 0.827)",
+    },
+    "&:disabled": {
+      backgroundColor: "rgba(0, 0, 0, 0.2)",
+    },
+  },
+  selectedImg: {
+    width: "100%",
+    height: "100%",
+    borderRadius: "10px",
+    maxHeight: "500px",
+    display: "block",
+  },
+  imgList: {
+    overflowY: "auto",
+    "&::-webkit-scrollbar": {
+      width: "0px",
+    },
+    "@media (max-width: 600px)": {
+      display: "flex",
+      flexDirection: "row",
+    },
   },
 };
 
-const mockImages = [
-  "https://picsum.photos/200/300?random=1",
-  "https://picsum.photos/200/300?random=2",
-  "https://picsum.photos/200/300?random=3",
-  "https://picsum.photos/200/300?random=4",
-  "https://picsum.photos/200/300?random=5",
-  "https://picsum.photos/200/300?random=6",
-  "https://picsum.photos/200/300?random=7",
-  "https://picsum.photos/200/300?random=8",
-  "https://picsum.photos/200/300?random=9",
-  "https://picsum.photos/200/300?random=10",
-  "https://picsum.photos/200/300?random=11",
-  "https://picsum.photos/200/300?random=12",
-  "https://picsum.photos/200/300?random=13",
-  "https://picsum.photos/200/300?random=14",
-  "https://picsum.photos/200/300?random=15",
-];
-
-const SlideActionButton = styled(IconButton)<ButtonProps>(() => ({
-  color: "white",
-
-  //   ":hover": {
-  //     color: theme.palette.ttcues.main,
-  //   },
-}));
 interface Props {
   images: string[];
 }
-export default function ImageCarousel({ images = mockImages }: Props) {
+
+// type AnchorType = "top" | "left" | "bottom" | "right";
+
+export default function ImageCarousel({ images }: Props) {
   const [selectedSlide, setSelectedSlide] = React.useState(0);
+  // const [anchor, setAnchor] = React.useState<AnchorType>("left");
 
   const handleSelectSlide = (index: number) => {
     setSelectedSlide(index);
@@ -79,100 +86,97 @@ export default function ImageCarousel({ images = mockImages }: Props) {
   };
 
   return (
-    <Grid id="carousel" container height={500} width="auto">
-      <Grid item xs={2}>
-        <List
-          id="product-image-list"
+    <Grid
+      id="carousel"
+      container
+      height={500}
+      width="auto"
+      justifyContent="center"
+    >
+      <Grid
+        item
+        mobileS={0}
+        xs={12}
+        sm={2}
+        sx={{
+          display: {
+            mobileS: "none",
+            md: "flex",
+          },
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Box
+          id="image-list"
           data-testid="product-image-list"
-          disablePadding
-          sx={{
-            overflowY: "auto",
-            maxHeight: "500px",
-            "&::-webkit-scrollbar": {
-              width: "0px",
-            },
-          }}
+          sx={styles.imgList}
         >
           {images.map((img, index) => {
             return (
-              <ListItem
+              <Box
                 key={index}
-                disablePadding
                 id={`product-image-${index}`}
+                sx={styles.sideStyle}
+                onClick={() => handleSelectSlide(index)}
               >
-                <Box
-                  sx={{
-                    ...styles.sideStyle,
-                  }}
+                <img
+                  src={img}
+                  alt="Product detail"
+                  width={76}
+                  height={80}
+                  loading="lazy"
                   onClick={() => handleSelectSlide(index)}
-                >
-                  <img
-                    src={img}
-                    alt="Product detail"
-                    width={76}
-                    height={80}
-                    loading="lazy"
-                    onClick={() => handleSelectSlide(index)}
-                    style={{
-                      objectFit: "cover",
-                      border:
-                        index === selectedSlide
-                          ? "2px solid #B88E2F"
-                          : "2px solid transparent",
-                    }}
-                  />
-                </Box>
-              </ListItem>
+                  style={{
+                    objectFit: "cover",
+                    border:
+                      index === selectedSlide
+                        ? "2px solid #B88E2F"
+                        : "2px solid transparent",
+                  }}
+                />
+              </Box>
             );
           })}
-        </List>
+        </Box>
       </Grid>
 
-      <Grid item xs={10}>
-        <Box sx={styles.selectedSlide} id="product-image">
+      <Grid item xs={12} sm={10}>
+        <Box sx={styles.selectedSlide} id="product-selected-image-container">
           <img
             alt="Selected Image"
             src={images[selectedSlide]}
             style={{
-              width: "100%",
-              height: "100%",
+              ...styles.selectedImg,
               objectFit: "contain",
-              borderRadius: "10px",
             }}
             loading="lazy"
           />
 
-          <SlideActionButton
+          <IconButton
             id="btn-previous-pic"
             data-testid="btn-previous-pic"
             aria-label="Previous Picture"
             name="btn-previous-pic"
             sx={{
-              position: "absolute",
-              top: "50%",
+              ...styles.btnSlideAction,
               left: "10px",
-              transform: "translateY(-50%)",
-              width: "fit-content",
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
             }}
             disabled={selectedSlide === 0}
             onClick={() => handleSelectSlide(selectedSlide - 1)}
           >
             <ArrowBackIosNew />
-          </SlideActionButton>
+          </IconButton>
 
-          <SlideActionButton
+          <IconButton
             id="btn-next-pic"
             data-testid="btn-next-pic"
             name="btn-next-pic"
             aria-label="Next Picture"
             sx={{
-              position: "absolute",
-              top: "50%",
+              ...styles.btnSlideAction,
               right: "10px",
-              transform: "translateY(-50%)",
-              width: "fit-content",
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
             }}
             disabled={selectedSlide === images.length - 1}
             onClick={() => handleSelectSlide(selectedSlide + 1)}
@@ -182,7 +186,7 @@ export default function ImageCarousel({ images = mockImages }: Props) {
                 transform: "rotate(180deg)",
               }}
             />
-          </SlideActionButton>
+          </IconButton>
         </Box>
       </Grid>
     </Grid>

@@ -1,22 +1,14 @@
-import BackLink from "@/components/BackLink";
 import DefaultImage from "@/components/DefaultImage/DefaultImage";
+import BackLinkLayout from "@/layouts/backlink.layout";
 import { projects } from "@/mocks/project.data.mock";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Container,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export default function ProjectPage() {
   return (
-    <Container className="project-wrapper" disableGutters>
-      <BackLink to="/" title="Home" />
+    <BackLinkLayout className="projects-container">
       <ProjectList />
-    </Container>
+    </BackLinkLayout>
   );
 }
 
@@ -34,7 +26,7 @@ function ProjectList() {
     <Grid container spacing={2}>
       {projects.map(({ id, name, screenshots, description }) => {
         return (
-          <Grid key={id} item xs={12} md={6} lg={3} className="project-card">
+          <Grid key={id} item xs={12} md={6} lg={4} className="project-card">
             <Card
               sx={{
                 height: "100%",
@@ -43,6 +35,11 @@ function ProjectList() {
                   boxShadow: "0 0 10px 0 rgba(228, 225, 225, 0.2)",
                   transform: "scale(1.05)",
                   transition: "all 0.2s ease-in-out",
+                },
+                margin: {
+                  xs: "0px 20px",
+                  md: "0px 10px",
+                  lg: "0px",
                 },
               }}
               elevation={3}

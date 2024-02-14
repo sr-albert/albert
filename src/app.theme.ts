@@ -8,7 +8,23 @@ declare module "@mui/material/Button" {
   }
 }
 
+declare module "@mui/material/styles" {
+  interface BreakpointOverrides {
+    mobileS: true;
+  }
+}
+
 export const appTheme = createTheme({
+  breakpoints: {
+    values: {
+      mobileS: 0,
+      xs: 480,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
   palette: {
     mode: "dark",
     primary: {
@@ -26,13 +42,6 @@ export const appTheme = createTheme({
       },
     },
     MuiButton: {
-      styleOverrides: {
-        root: {
-          "&:hover": {
-            border: "1px solid transparent",
-          },
-        },
-      },
       variants: [
         {
           props: { variant: "abtn", color: "primary" },
@@ -44,10 +53,10 @@ export const appTheme = createTheme({
             transition: "all 0.2s ease-in-out",
             margin: "5px",
             minHeight: "40px",
-            color: "dark-color", 
+            color: "dark-color",
             "&:hover": {
               transform: "scale(1.05)",
-              color: "main-color",
+              color: "primary.main",
             },
           },
         },
@@ -65,7 +74,7 @@ export const appTheme = createTheme({
             border: "1px solid transparent",
             "&:hover": {
               transform: "scale(1.05)",
-              color: "main-color",
+              color: "primary.main",
             },
           },
         },
