@@ -89,7 +89,7 @@ function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
     >
       {platforms.map(({ url, name, id }, idx) => {
         return (
-          <Tooltip title={`View on ${name}`}>
+          <Tooltip title={`View on ${name}`} key={id}>
             <Button
               key={idx}
               color="inherit"
