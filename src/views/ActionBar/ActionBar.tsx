@@ -8,11 +8,11 @@ export default function ActionBar() {
     const routes = appRoute.routes;
     const root = routes[0];
 
-    const parent = {
-      path: root.path,
-      index: root.index,
-      id: root.id,
-    };
+    // const parent = {
+    //   path: root.path,
+    //   index: root.index,
+    //   id: root.id,
+    // };
 
     const appRoutes = root.children;
 
