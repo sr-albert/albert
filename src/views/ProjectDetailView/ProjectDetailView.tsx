@@ -30,8 +30,15 @@ export default function ProjectDetailView() {
       className="project-detail-container"
       data-testid={`project-detail-${id}`}
     >
-      <Grid container>
-        <Grid item xs={12} md={6}>
+      <Grid
+        container
+        spacing={3}
+        direction={{
+          mobileS: "column-reverse",
+          md: "row",
+        }}
+      >
+        <Grid item mobileS={12} xs={6}>
           <Typography variant="h3">{name}</Typography>
 
           <Container
@@ -58,7 +65,7 @@ export default function ProjectDetailView() {
         </Grid>
 
         {screenshots && (
-          <Grid item xs={12} md={6}>
+          <Grid item mobileS={12} xs={6}>
             <ImageCarousel images={screenshots} />
           </Grid>
         )}

@@ -1,13 +1,12 @@
 import { ArrowBackIosNew } from "@mui/icons-material";
-import { Box, ButtonProps, Grid, IconButton } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box, Grid, IconButton } from "@mui/material";
 import React from "react";
 const styles = {
   root: {
     width: "100%",
     position: "relative",
+    margin: "auto",
   },
-
   sideStyle: {
     justifyContent: "center",
     alignItems: "center",
@@ -26,33 +25,53 @@ const styles = {
     width: "100%",
     height: "500px",
     position: "relative",
+    "@media (max-width: 600px)": {
+      height: "auto",
+    },
+  },
+  btnSlideAction: {
+    position: "absolute",
+    color: "white",
+    top: "50%",
+    transform: "translateY(-50%)",
+    width: "fit-content",
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    "&:hover": {
+      cursor: "pointer",
+      backgroundColor: "rgba(0, 0, 0, 0.827)",
+    },
+    "&:disabled": {
+      backgroundColor: "rgba(0, 0, 0, 0.2)",
+    },
+  },
+  selectedImg: {
+    width: "100%",
+    height: "100%",
+    borderRadius: "10px",
+    maxHeight: "500px",
+    display: "block",
+  },
+  imgList: {
+    overflowY: "auto",
+    "&::-webkit-scrollbar": {
+      width: "0px",
+    },
+    "@media (max-width: 600px)": {
+      display: "flex",
+      flexDirection: "row",
+    },
   },
 };
-
-const SlideActionButton = styled(IconButton)<ButtonProps>(() => ({
-  color: "white",
-  top: "50%",
-  transform: "translateY(-50%)",
-  width: "fit-content",
-  backgroundColor: "rgba(0, 0, 0, 0.3)",
-  "&:hover": {
-    cursor: "pointer",
-    backgroundColor: "rgba(0, 0, 0, 0.827)",
-  },
-  "&:disabled": {
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
-  },
-}));
 
 interface Props {
   images: string[];
 }
 
-type AnchorType = "top" | "left" | "bottom" | "right";
+// type AnchorType = "top" | "left" | "bottom" | "right";
 
 export default function ImageCarousel({ images }: Props) {
   const [selectedSlide, setSelectedSlide] = React.useState(0);
-  const [anchor, setAnchor] = React.useState<AnchorType>("left");
+  // const [anchor, setAnchor] = React.useState<AnchorType>("left");
 
   const handleSelectSlide = (index: number) => {
     setSelectedSlide(index);
@@ -67,27 +86,39 @@ export default function ImageCarousel({ images }: Props) {
   };
 
   return (
-    <Grid id="carousel" container height={500} width="auto">
-      <Grid item xs={12} md={2}>
+    <Grid
+      id="carousel"
+      container
+      height={500}
+      width="auto"
+      justifyContent="center"
+    >
+      <Grid
+        item
+        mobileS={0}
+        xs={12}
+        sm={2}
+        sx={{
+          display: {
+            mobileS: "none",
+            md: "flex",
+          },
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Box
-          id="product-image-list"
+          id="image-list"
           data-testid="product-image-list"
-          sx={{
-            overflowY: "auto",
-            maxHeight: "500px",
-            "&::-webkit-scrollbar": {
-              width: "0px",
-            },
-          }}
+          sx={styles.imgList}
         >
           {images.map((img, index) => {
             return (
               <Box
                 key={index}
                 id={`product-image-${index}`}
-                sx={{
-                  ...styles.sideStyle,
-                }}
+                sx={styles.sideStyle}
                 onClick={() => handleSelectSlide(index)}
               >
                 <img
@@ -111,42 +142,40 @@ export default function ImageCarousel({ images }: Props) {
         </Box>
       </Grid>
 
-      <Grid item xs={12} md={10}>
-        <Box sx={styles.selectedSlide} id="product-image">
+      <Grid item xs={12} sm={10}>
+        <Box sx={styles.selectedSlide} id="product-selected-image-container">
           <img
             alt="Selected Image"
             src={images[selectedSlide]}
             style={{
-              width: "100%",
-              height: "100%",
+              ...styles.selectedImg,
               objectFit: "contain",
-              borderRadius: "10px",
             }}
             loading="lazy"
           />
 
-          <SlideActionButton
+          <IconButton
             id="btn-previous-pic"
             data-testid="btn-previous-pic"
             aria-label="Previous Picture"
             name="btn-previous-pic"
             sx={{
-              position: "absolute",
+              ...styles.btnSlideAction,
               left: "10px",
             }}
             disabled={selectedSlide === 0}
             onClick={() => handleSelectSlide(selectedSlide - 1)}
           >
             <ArrowBackIosNew />
-          </SlideActionButton>
+          </IconButton>
 
-          <SlideActionButton
+          <IconButton
             id="btn-next-pic"
             data-testid="btn-next-pic"
             name="btn-next-pic"
             aria-label="Next Picture"
             sx={{
-              position: "absolute",
+              ...styles.btnSlideAction,
               right: "10px",
             }}
             disabled={selectedSlide === images.length - 1}
@@ -157,7 +186,7 @@ export default function ImageCarousel({ images }: Props) {
                 transform: "rotate(180deg)",
               }}
             />
-          </SlideActionButton>
+          </IconButton>
         </Box>
       </Grid>
     </Grid>
