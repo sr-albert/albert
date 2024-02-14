@@ -1,20 +1,22 @@
 import { ArrowBackIosNew } from "@mui/icons-material";
-import { Box, ButtonProps, Grid, IconButton, ListItem } from "@mui/material";
+import { Box, ButtonProps, Grid, IconButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React from "react";
 const styles = {
   root: {
     width: "100%",
-    backgrourdColor: "red",
     position: "relative",
   },
 
   sideStyle: {
+    justifyContent: "center",
+    alignItems: "center",
+    display: "flex",
+    padding: "5px 0px",
+    cursor: "pointer",
     ">img": {
       borderRadius: "12px",
-      cursor: "pointer",
       border: "2px solid transparent",
-
       ":hover": {
         border: "2px solid #B88E2F",
       },
@@ -34,18 +36,23 @@ const SlideActionButton = styled(IconButton)<ButtonProps>(() => ({
   width: "fit-content",
   backgroundColor: "rgba(0, 0, 0, 0.3)",
   "&:hover": {
-    border: "1px solid #B88E2F",
+    cursor: "pointer",
     backgroundColor: "rgba(0, 0, 0, 0.827)",
   },
   "&:disabled": {
     backgroundColor: "rgba(0, 0, 0, 0.2)",
   },
 }));
+
 interface Props {
   images: string[];
 }
+
+type AnchorType = "top" | "left" | "bottom" | "right";
+
 export default function ImageCarousel({ images }: Props) {
   const [selectedSlide, setSelectedSlide] = React.useState(0);
+  const [anchor, setAnchor] = React.useState<AnchorType>("left");
 
   const handleSelectSlide = (index: number) => {
     setSelectedSlide(index);
@@ -75,34 +82,30 @@ export default function ImageCarousel({ images }: Props) {
         >
           {images.map((img, index) => {
             return (
-              <ListItem
+              <Box
                 key={index}
-                disablePadding
                 id={`product-image-${index}`}
+                sx={{
+                  ...styles.sideStyle,
+                }}
+                onClick={() => handleSelectSlide(index)}
               >
-                <Box
-                  sx={{
-                    ...styles.sideStyle,
-                  }}
+                <img
+                  src={img}
+                  alt="Product detail"
+                  width={76}
+                  height={80}
+                  loading="lazy"
                   onClick={() => handleSelectSlide(index)}
-                >
-                  <img
-                    src={img}
-                    alt="Product detail"
-                    width={76}
-                    height={80}
-                    loading="lazy"
-                    onClick={() => handleSelectSlide(index)}
-                    style={{
-                      objectFit: "cover",
-                      border:
-                        index === selectedSlide
-                          ? "2px solid #B88E2F"
-                          : "2px solid transparent",
-                    }}
-                  />
-                </Box>
-              </ListItem>
+                  style={{
+                    objectFit: "cover",
+                    border:
+                      index === selectedSlide
+                        ? "2px solid #B88E2F"
+                        : "2px solid transparent",
+                  }}
+                />
+              </Box>
             );
           })}
         </Box>
