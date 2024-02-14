@@ -8,7 +8,23 @@ declare module "@mui/material/Button" {
   }
 }
 
+declare module "@mui/material/styles" {
+  interface BreakpointOverrides {
+    mobileS: true;
+  }
+}
+
 export const appTheme = createTheme({
+  breakpoints: {
+    values: {
+      mobileS: 0,
+      xs: 480,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
   palette: {
     mode: "dark",
     primary: {
