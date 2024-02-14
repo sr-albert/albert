@@ -72,8 +72,6 @@ export default function ActionBarItem({ path, isSocial }: Props) {
     return "/" + path;
   };
 
-  if (!path) return;
-
   return (
     <NavLink
       id={`action-item-${path}`}
