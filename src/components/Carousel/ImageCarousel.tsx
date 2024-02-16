@@ -76,7 +76,7 @@ export default function ImageCarousel({ images }: Props) {
 
   const handleSelectSlide = (index: number) => {
     setSelectedSlide(index);
-    const list = document.getElementById("product-image-list");
+    const list = document.getElementById("image-list");
     const selectedSlide = document.getElementById(`product-image-${index}`);
     if (list && selectedSlide) {
       list.scrollTo({
@@ -87,13 +87,7 @@ export default function ImageCarousel({ images }: Props) {
   };
 
   return (
-    <Grid
-      id="carousel"
-      container
-      height={500}
-      width="auto"
-      justifyContent="center"
-    >
+    <Grid id="carousel" container width="auto" justifyContent="center">
       <Grid
         item
         mobileS={0}
