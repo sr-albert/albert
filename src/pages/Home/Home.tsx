@@ -13,7 +13,7 @@ export default function Home() {
             I am Albert,
           </Typography>
           <Typography variant="h2" fontWeight={800}>
-            a software Engineer
+            a software engineer
           </Typography>
           <OpenWork />
         </span>
