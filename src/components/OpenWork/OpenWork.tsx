@@ -8,6 +8,10 @@ export default function OpenWork() {
       sx={{
         cursor: "pointer",
         width: "fit-content",
+        margin: {
+          mobileS: "1rem auto",
+          md: "auto",
+        },
       }}
     >
       <Typography

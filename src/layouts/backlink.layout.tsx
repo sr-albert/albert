@@ -14,10 +14,10 @@ export default function BackLinkLayout({
 }: Props) {
   return (
     <Container disableGutters {...other}>
-      <Container>
+      <Container disableGutters>
         <BackLink to={to} title={title} />
       </Container>
-      <Container>{children}</Container>
+      <Container disableGutters>{children}</Container>
     </Container>
   );
 }

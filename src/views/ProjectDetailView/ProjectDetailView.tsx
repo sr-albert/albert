@@ -6,6 +6,7 @@ import { getProjects } from "@/services/project.service";
 import { IPlatform, IProject } from "@/types/project";
 import { renderTechIcon } from "@/utils/helper";
 import {
+  Box,
   Button,
   Chip,
   Container,
@@ -39,8 +40,10 @@ export default function ProjectDetailView() {
           md: "row",
         }}
       >
-        <Grid item mobileS={12} xs={6}>
-          <Typography variant="h3">{name}</Typography>
+        <Grid item mobileS={12} xs={6} padding="0px">
+          <Container className="title-wrapper">
+            <Typography variant="h3">{name}</Typography>
+          </Container>
 
           <Container
             sx={{
@@ -49,7 +52,6 @@ export default function ProjectDetailView() {
               justifyContent: "space-between",
               margin: "10px 0",
             }}
-            disableGutters
           >
             {techStack && <Stacks stacks={techStack} />}
             {platforms && <AvailablePlatforms platforms={platforms} />}
@@ -57,10 +59,7 @@ export default function ProjectDetailView() {
 
           {tags && <Tags tags={tags} />}
 
-          <Container
-            style={{ whiteSpace: "normal", margin: "10px 0px" }}
-            disableGutters
-          >
+          <Container style={{ whiteSpace: "normal", margin: "10px 0px" }}>
             <Typography variant="body1">{description}</Typography>
           </Container>
         </Grid>
@@ -85,7 +84,7 @@ function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
     window.open(url, "_blank");
   };
   return (
-    <Container
+    <Box
       className="available-wrapper"
       sx={{
         width: "fit-content",
@@ -113,7 +112,7 @@ function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
           </Tooltip>
         );
       })}
-    </Container>
+    </Box>
   );
 }
 
@@ -125,13 +124,12 @@ export function Tags({ tags }: ITagProps) {
     <Container
       className="tag-wrapper row"
       sx={{
-        display: "flex",
-        gap: 1,
+        display: "bl",
+
         "& > :not(style)": {
           color: "inherit",
         },
       }}
-      disableGutters
     >
       {tags.map((tag, idx) => {
         return (
@@ -156,12 +154,12 @@ export function Stacks({ stacks }: IStacksProps) {
   return (
     <Container
       className="stack-wrapper"
-      disableGutters
       sx={{
         display: "flex",
         gap: 1,
         alignItems: "center",
       }}
+      disableGutters
     >
       {stacks.map((stack, idx) => {
         return (
@@ -198,8 +196,8 @@ function RenderTechIcon({
       key={idx || "default key"}
       alt={tech}
       src={renderTechIcon(tech)}
-      height={32}
-      width={32}
+      height={24}
+      width={24}
       style={{
         margin: "0 5px",
       }}

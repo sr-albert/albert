@@ -25,8 +25,9 @@ const styles = {
     width: "100%",
     height: "500px",
     position: "relative",
+
     "@media (max-width: 600px)": {
-      height: "auto",
+      height: "300px",
     },
   },
   btnSlideAction: {
@@ -87,7 +88,7 @@ export default function ImageCarousel({ images }: Props) {
   };
 
   return (
-    <Grid id="carousel" container width="auto" justifyContent="center">
+    <Grid id="carousel" container width="100%" justifyContent="center">
       <Grid
         item
         mobileS={0}
@@ -102,6 +103,7 @@ export default function ImageCarousel({ images }: Props) {
           alignItems: "center",
           justifyContent: "center",
         }}
+        className="product-image-list-container"
       >
         <Box
           id="image-list"
@@ -136,14 +138,14 @@ export default function ImageCarousel({ images }: Props) {
         </Box>
       </Grid>
 
-      <Grid item xs={12} sm={10}>
+      <Grid item mobileS={12} sm={10}>
         <Box sx={styles.selectedSlide} id="product-selected-image-container">
           <img
             alt="Selected Image"
             src={images[selectedSlide]}
             style={{
               ...styles.selectedImg,
-              objectFit: "contain",
+              objectFit: "cover",
             }}
             loading="lazy"
           />
