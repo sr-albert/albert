@@ -26,7 +26,14 @@ function ProjectList() {
     <Grid container spacing={2}>
       {projects.map(({ id, name, screenshots, description }) => {
         return (
-          <Grid key={id} item xs={12} md={6} lg={4} className="project-card">
+          <Grid
+            key={id}
+            item
+            mobileS={12}
+            md={6}
+            lg={4}
+            className="project-card"
+          >
             <Card
               sx={{
                 height: "100%",
