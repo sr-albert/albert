@@ -23,7 +23,7 @@ export default function BackLinkLayout({
       <Container disableGutters>
         <BackLink to={to} title={title} />
       </Container>
-      <Container>{children}</Container>
+      <Container disableGutters>{children}</Container>
     </Container>
   );
 }
