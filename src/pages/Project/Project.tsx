@@ -23,7 +23,7 @@ function ProjectList() {
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} mb={3}>
       {projects.map(({ id, name, screenshots, description }) => {
         return (
           <Grid
