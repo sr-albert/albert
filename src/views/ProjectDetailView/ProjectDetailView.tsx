@@ -12,6 +12,7 @@ import {
   Grid,
   Tooltip,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { useLoaderData } from "react-router-dom";
 
@@ -78,6 +79,8 @@ interface IAvailablePlatformsProps {
   platforms: IPlatform[];
 }
 function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
+  const theme = useTheme();
+
   const onClickHandler = (url: string) => {
     window.open(url, "_blank");
   };
@@ -99,6 +102,8 @@ function AvailablePlatforms({ platforms }: IAvailablePlatformsProps) {
               fullWidth={false}
               sx={{
                 width: "fit-content",
+                WebkitFilter: theme.palette.mode === "dark" ? "invert(1)" : "",
+                filter: theme.palette.mode === "dark" ? "invert(1)" : "",
               }}
               onClick={() => onClickHandler(url)}
               disabled={!url}
@@ -147,6 +152,7 @@ interface IStacksProps {
   stacks: string[];
 }
 export function Stacks({ stacks }: IStacksProps) {
+  const theme = useTheme();
   return (
     <Container
       className="stack-wrapper"
@@ -169,6 +175,8 @@ export function Stacks({ stacks }: IStacksProps) {
               style={{
                 margin: "0 5px",
                 pointerEvents: "inherit",
+                WebkitFilter: theme.palette.mode === "dark" ? "invert(1)" : "",
+                filter: theme.palette.mode === "dark" ? "invert(1)" : "",
               }}
             />
           </Tooltip>
