@@ -121,7 +121,6 @@ export default function ImageCarousel({ images }: Props) {
                   alt="Product detail"
                   width={76}
                   height={80}
-                  loading="lazy"
                   onClick={() => handleSelectSlide(index)}
                   style={{
                     objectFit: "cover",
