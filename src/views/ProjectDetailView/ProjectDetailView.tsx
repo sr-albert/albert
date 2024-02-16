@@ -34,14 +34,21 @@ export default function ProjectDetailView() {
     >
       <Grid
         container
-        spacing={3}
         direction={{
           mobileS: "column-reverse",
           md: "row",
         }}
       >
-        <Grid item mobileS={12} xs={6} padding="0px">
-          <Container className="title-wrapper">
+        <Grid item mobileS={12} xs={6}>
+          <Container
+            className="title-wrapper"
+            sx={{
+              margin: {
+                mobileS: "10px 0",
+                md: "0",
+              },
+            }}
+          >
             <Typography variant="h3">{name}</Typography>
           </Container>
 

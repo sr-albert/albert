@@ -22,10 +22,12 @@ const styles = {
     },
   },
   selectedSlide: {
-    width: "100%",
     height: "500px",
     position: "relative",
-    ml: 2,
+    ml: {
+      mobileS: "0px",
+      md: 2,
+    },
     "@media (max-width: 600px)": {
       height: "300px",
     },
@@ -88,7 +90,7 @@ export default function ImageCarousel({ images }: Props) {
   };
 
   return (
-    <Grid id="carousel" container width="100%" justifyContent="center">
+    <Grid container id="carousel" justifyContent="center">
       <Grid
         item
         mobileS={0}
