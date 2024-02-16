@@ -1,5 +1,5 @@
 import { ArrowBackIosNew } from "@mui/icons-material";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 interface Props {
@@ -20,9 +20,10 @@ export default function BackLink({ to = "..", title = "Back" }: Props) {
         sx={{
           width: "fit-content",
           margin: "1rem 0",
+          boxShadow: "none",
         }}
       >
-        {title}
+        <Typography variant="button">{title}</Typography>
       </Button>
     </NavLink>
   );
