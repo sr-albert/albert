@@ -29,6 +29,7 @@ export const appTheme = createTheme({
     mode: "dark",
     primary: {
       main: "#B88E2F",
+      dark: "#121212",
     },
   },
   typography: {},
