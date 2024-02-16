@@ -53,6 +53,7 @@ const styles = {
   },
   imgList: {
     overflowY: "auto",
+    maxHeight: "500px",
     "&::-webkit-scrollbar": {
       width: "0px",
     },
