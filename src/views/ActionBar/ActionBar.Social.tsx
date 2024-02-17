@@ -1,3 +1,4 @@
+import ButtonVisitPortal from "@/components/ButtonVisittPortal";
 import "./ActionBar.Social.scss";
 import ActionBarItem from "./ActionBarItem";
 import { ItemProps } from "./item.type";
@@ -30,6 +31,7 @@ const socialMenu: ItemProps[] = [
 export default function ActionBarSocial() {
   return (
     <div className="social-group-container">
+      <ButtonVisitPortal />
       {socialMenu.map(({ href, isSocial, id }: ItemProps) => {
         if (!isSocial) return null;
         return <ActionBarItem key={id} path={href} isSocial={true} />;

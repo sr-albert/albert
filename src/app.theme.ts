@@ -5,6 +5,7 @@ declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
     abtn: true; // Albert's custom Button
     "abtn-circle": true;
+    "abtn-outline": true;
   }
 }
 
@@ -76,6 +77,26 @@ export const appTheme = createTheme({
             "&:hover": {
               transform: "scale(1.05)",
               color: "primary.main",
+            },
+          },
+        },
+        {
+          props: { variant: "abtn-outline", color: "primary" },
+          style: {
+            backgroundColor: "transparent",
+            borderRadius: "5px",
+            boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.1)",
+            cursor: "pointer",
+            transition: "all 0.2s ease-in-out",
+            margin: "5px",
+            minHeight: "40px",
+            color: "dark-color",
+            border: "1px solid",
+            borderColor: "primary.main",
+            "&:hover": {
+              transform: "scale(1.05)",
+              color: "primary.main",
+              backgroundColor: "primary.dark",
             },
           },
         },

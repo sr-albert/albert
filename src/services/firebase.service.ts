@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "firebase/app";
+import { getRemoteConfig, getValue } from "firebase/remote-config";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,4 +22,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-export { app as firebaseApp, analytics as firebaseAnalytics };
+// Remote Config settings
+const remoteConfig = getRemoteConfig(app);
+remoteConfig.settings.minimumFetchIntervalMillis = 1000;
+remoteConfig.defaultConfig = {
+  isOpenToWork: false,
+  portalUrl: "http://portal.albertnguyen.com",
+};
+
+export const getConfig = async (key: string): Promise<string> => {
+  const val = getValue(remoteConfig, key);
+
+  // Get _value from Value object
+  return val.asString();
+};
+
+export {
+  analytics as firebaseAnalytics,
+  app as firebaseApp,
+  remoteConfig as firebaseRemoteConfig,
+};
