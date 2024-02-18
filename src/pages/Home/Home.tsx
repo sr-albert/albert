@@ -1,9 +1,13 @@
-import { ActionBar, ActionBarSocial } from "@/views";
-import "./Home.scss";
+import { AppContext } from "@/app";
 import OpenWork from "@/components/OpenWork";
+import { ActionBar, ActionBarSocial } from "@/views";
 import { Typography } from "@mui/material";
+import { useContext } from "react";
+import "./Home.scss";
 
 export default function Home() {
+  const { isOpenWork } = useContext(AppContext);
+
   return (
     <div id="home">
       <section id="home-intro" className="force-center">
@@ -15,7 +19,7 @@ export default function Home() {
           <Typography variant="h2" fontWeight={800}>
             a software engineer
           </Typography>
-          <OpenWork />
+          {isOpenWork && <OpenWork />}
         </span>
       </section>
 

@@ -1,17 +1,15 @@
-import { getConfig } from "@/services/firebase.service";
+import { AppContext } from "@/app";
 import { Button } from "@mui/material";
-import { useMemo } from "react";
+import { useContext } from "react";
 
 export default function ButtonVisitPortal() {
-  const portalUrl = useMemo(async () => {
-    const url: string = await getConfig("portalUrl");
-    console.log("portalUrl", url);
-    return url;
-  }, []);
-
+  const { portalUrl } = useContext(AppContext);
   const onClick = async () => {
-    if (portalUrl) window.open(await portalUrl, "_blank");
+    window.open(portalUrl, "_blank");
   };
+
+  if (!portalUrl) return;
+
   return (
     <Button variant="abtn-outline" onClick={onClick}>
       Visit My Portal
