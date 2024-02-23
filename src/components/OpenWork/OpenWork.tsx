@@ -4,6 +4,7 @@ import GlowingBackground from "../GlowingBr/GlowingBr";
 export default function OpenWork() {
   return (
     <GlowingBackground
+      className="animate__animated animate__pulse"
       // onClick={handleDownload}
       sx={{
         cursor: "pointer",
@@ -11,6 +12,7 @@ export default function OpenWork() {
         margin: {
           mobileS: "1rem auto",
           md: "auto",
+          animationDuration: "800ms",
         },
       }}
     >

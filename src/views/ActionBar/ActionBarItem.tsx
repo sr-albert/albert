@@ -13,8 +13,13 @@ import { NavLink, useMatch } from "react-router-dom";
 interface Props {
   path: string | undefined;
   isSocial?: boolean;
+  animationDuration?: string; // in seconds
 }
-export default function ActionBarItem({ path, isSocial }: Props) {
+export default function ActionBarItem({
+  path,
+  isSocial,
+  animationDuration = "3s",
+}: Props) {
   const contactPathMatched = useMatch("/contact");
   const isHighlight = contactPathMatched && isSocial;
 
@@ -51,9 +56,9 @@ export default function ActionBarItem({ path, isSocial }: Props) {
     isActive?: boolean;
     isPending?: boolean;
   }) => {
-    let className = "action-bar-item";
+    let className = "action-bar-item animate__animated";
     if (isHighlight) className += " highlight";
-    if (isSocial) className += " social";
+    if (isSocial) className += " social animate__bounceIn";
     className += isPending ? " pending" : isActive ? " active" : "";
     return className;
   };
@@ -80,6 +85,9 @@ export default function ActionBarItem({ path, isSocial }: Props) {
       target={isSocial ? "_blank" : "_self"}
       className={returnClassName}
       draggable={false}
+      style={{
+        animationDuration: animationDuration,
+      }}
     >
       <Tooltip title={handleTooltipTitle()} placement="right">
         {renderIcon()}

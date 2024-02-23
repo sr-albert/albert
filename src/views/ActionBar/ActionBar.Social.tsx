@@ -1,38 +1,30 @@
+import { AppContext } from "@/app";
+import ButtonVisitPortal from "@/components/ButtonVisittPortal";
+import { useContext } from "react";
 import "./ActionBar.Social.scss";
 import ActionBarItem from "./ActionBarItem";
 import { ItemProps } from "./item.type";
 
-// Create a list of dummy data to render
-const socialMenu: ItemProps[] = [
-  {
-    id: "leetcode",
-    name: "Leetcode",
-    href: "https://leetcode.com/sr-albert/",
-    description: "Leetcode profile",
-    isSocial: true,
-  },
-  {
-    id: "linkedin",
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/tam-nguyen-6a1576183/",
-    description: "Linked profile",
-    isSocial: true,
-  },
-  {
-    id: "github",
-    name: "Github",
-    href: "https://github.com/sr-albert",
-    description: "GitHub profile",
-    isSocial: true,
-  },
-];
-
 export default function ActionBarSocial() {
+  const { socials } = useContext(AppContext);
+  if (!socials) return null;
   return (
     <div className="social-group-container">
-      {socialMenu.map(({ href, isSocial, id }: ItemProps) => {
+      <ButtonVisitPortal />
+      {Array.from(socials).map((data, idx) => {
+        const { href, isSocial, id } = data as ItemProps;
+        // calc the animation delay to make the social icons appear one by one
+        const delay = (idx + 1) * 0.5 + "s";
+        console.log("delay", delay);
         if (!isSocial) return null;
-        return <ActionBarItem key={id} path={href} isSocial={true} />;
+        return (
+          <ActionBarItem
+            key={id}
+            path={href}
+            isSocial={true}
+            animationDuration={delay}
+          />
+        );
       })}
     </div>
   );
