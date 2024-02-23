@@ -28,10 +28,6 @@ const analytics = getAnalytics(app);
 
 // Remote Config settings
 const remoteConfig = getRemoteConfig(app);
-remoteConfig.defaultConfig = {
-  is_open_work: "",
-  portal_url: "",
-}; // Don't use default config
 
 export const getConfig = async (key: string): Promise<string> => {
   const val = getValue(remoteConfig, key);
