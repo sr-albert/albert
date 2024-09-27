@@ -156,7 +156,6 @@ export const ContactForm = React.forwardRef(() => {
         label="Reason"
         id="select-reason"
         defaultValue="OTHER"
-        placeholder="..."
         options={OPTIONS}
         disabled={formSubmitting}
         {...register("reason")}
