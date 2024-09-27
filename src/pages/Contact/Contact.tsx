@@ -5,6 +5,7 @@ import React from "react";
 import { redirect } from "react-router-dom";
 import "./Contact.scss";
 import { ContactForm } from "./ContactForm";
+
 export async function action({ request }: any): Promise<Response> {
   const formData = await request.formData();
   const objData = Object.fromEntries(formData);
@@ -26,9 +27,18 @@ export default function Contact() {
 
   return (
     <ContactContext.Provider value={{ setShowSnackbar }}>
-      <div id="contact-container">
+      <div
+        id="contact-container"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          width: "100%",
+        }}
+      >
         <ContactForm />
-
         <Snackbar
           visible={showSnackbar}
           message={"TestTestTestTestTestTestTest"}

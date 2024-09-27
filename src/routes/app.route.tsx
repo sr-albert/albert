@@ -1,6 +1,7 @@
 import { App } from "@/app";
-import { Home, Project } from "@/pages";
+import { Contact, Home, Project } from "@/pages";
 import { ErrorView } from "@/views";
+import ComponentsGalleryView from "@/views/ComponentsGalleryView";
 import NotFound from "@/views/NotFound/NotFound";
 import ProjectDetailView, {
   projectDetailLoader,
@@ -27,10 +28,14 @@ const appRoute = createBrowserRouter([
         element: <ProjectDetailView />,
         loader: projectDetailLoader,
       },
-      // {
-      //   path: "components",
-      //   element: <ComponentsGalleryView />,
-      // },
+      {
+        path: "components",
+        element: <ComponentsGalleryView />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
     ],
   },
   {
