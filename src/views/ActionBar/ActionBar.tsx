@@ -8,12 +8,6 @@ export default function ActionBar() {
     const routes = appRoute.routes;
     const root = routes[0];
 
-    // const parent = {
-    //   path: root.path,
-    //   index: root.index,
-    //   id: root.id,
-    // };
-
     const appRoutes = root.children;
 
     const child = appRoutes?.filter((r) => {
@@ -26,8 +20,6 @@ export default function ActionBar() {
 
   return (
     <div id="action-bar" className="horizontal">
-      {/* {renderItems()} */}
-
       {memoizedRoutes &&
         memoizedRoutes.map(({ path, id }) => <Item key={id} path={path} />)}
     </div>

@@ -23,7 +23,8 @@ export default function Home() {
         </span>
       </section>
 
-      <ActionBar />
+      {/* TODO: Remove comment when finish */}
+      {/* <ActionBar /> */}
       <ActionBarSocial />
     </div>
   );
