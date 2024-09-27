@@ -1,6 +1,6 @@
 import { AppContext } from "@/app";
 import OpenWork from "@/components/OpenWork";
-import { ActionBar, ActionBarSocial } from "@/views";
+import { ActionBarSocial } from "@/views";
 import { Typography } from "@mui/material";
 import { useContext } from "react";
 import "./Home.scss";
