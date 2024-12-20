@@ -1,5 +1,7 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import LottieLoader from "@/components/LottieLoader";
+import error404 from "@/assets/lottie/lottie-404.json";
 
 export default function NotFound() {
   const navigation = useNavigate();
@@ -21,9 +23,7 @@ export default function NotFound() {
       }}
       maxWidth={false}
     >
-      <Typography variant="h1" textAlign="center" sx={{ width: "fit-content" }}>
-        Not found
-      </Typography>
+      <LottieLoader animationData={error404} />
 
       <Box width="fit-content">
         <Button

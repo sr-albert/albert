@@ -2,7 +2,6 @@ import { Container, Typography } from "@mui/material";
 import { useRouteError } from "react-router-dom";
 
 export default function ErrorView() {
-  // Get the error message from the error object
   const error = useRouteError();
 
   return (
